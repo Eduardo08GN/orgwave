@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Organic Wave | Live de Lançamento</title>
+<meta name="description" content="O oceano de dólares sem tráfego pago. Aquisição 100 por cento orgânica no maior mercado de suplementos do mundo.">
+<link rel="icon" type="image/png" href="img/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#080B10;
+  --bg-2:#0B1017;
+  --surface:#101A22;
+  --surface-2:#16222C;
+
+  --light:#EAF1EF;
+  --light-2:#FFFFFF;
+  --light-ink:#0A171B;
+  --light-ink-2:#42565A;
+
+  --aqua:#18CBB6;
+  --aqua-2:#0EA893;
+  --aqua-soft:rgba(24,203,182,.14);
+
+  --ocean:#2E9AD6;
+  --ocean-deep:#134E73;
+
+  --gold:#EBC66A;
+  --gold-2:#C99A3E;
+  --gold-deep:#A9791F;
+
+  --ink:#ECF3F1;
+  --ink-dim:#A6B8B6;
+  --ink-mut:#657B7D;
+
+  --line:rgba(255,255,255,.08);
+  --line-2:rgba(255,255,255,.15);
+
+  --r-sm:12px;
+  --r:20px;
+  --r-lg:28px;
+  --pill:999px;
+
+  --font-display:"Clash Display","Space Grotesk",system-ui,sans-serif;
+  --font-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  --font-mono:"Space Mono",ui-monospace,monospace;
+
+  --wrap:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --ease-expo:cubic-bezier(.16,1,.3,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{display:block;max-width:100%}
+::selection{background:var(--aqua);color:#04231F}
+
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px}
+
+/* progresso + grão ---------------------------------------------------------- */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:150;background:transparent}
+.scroll-progress span{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;
+  background:linear-gradient(90deg,var(--ocean),var(--aqua))}
+.grain{position:fixed;inset:0;z-index:140;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* navegação ----------------------------------------------------------------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:120;padding:20px 0;transition:padding .4s var(--ease)}
+.nav-inner{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;transition:all .4s var(--ease)}
+.nav.scrolled{padding:12px 0}
+.nav.scrolled .nav-inner{
+  max-width:1080px;background:rgba(10,16,22,.72);backdrop-filter:blur(18px) saturate(1.4);
+  border:1px solid var(--line);border-radius:var(--pill);padding:10px 20px;
+  box-shadow:0 14px 40px -18px rgba(0,0,0,.7);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:38px;height:auto}
+.brand-name{font-family:var(--font-display);font-weight:700;font-size:1.2rem;letter-spacing:-.01em}
+.brand-name span{color:var(--aqua)}
+.nav-date{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;color:var(--ink-mut);text-transform:uppercase}
+
+/* tipografia de seção ------------------------------------------------------- */
+.section{position:relative;padding:clamp(96px,13vh,160px) 0}
+.kicker{display:inline-block;font-family:var(--font-mono);font-size:12px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--aqua);margin-bottom:22px}
+.light .kicker{color:var(--aqua-2)}
+.sec-head{max-width:820px;margin-bottom:62px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-title{font-family:var(--font-display);font-weight:600;line-height:1.04;letter-spacing:-.02em;
+  font-size:clamp(2.2rem,5.4vw,3.9rem);color:var(--ink)}
+.light .sec-title{color:var(--light-ink)}
+.accent{color:var(--aqua)}
+.light .accent{color:var(--aqua-2)}
+.accent-gold{color:var(--gold)}
+.light .accent-gold{color:var(--gold-deep)}
+.sec-lead{margin-top:22px;font-size:clamp(1.02rem,1.6vw,1.2rem);color:var(--ink-dim);max-width:640px}
+.sec-head.center .sec-lead{margin-left:auto;margin-right:auto}
+.light .sec-lead{color:var(--light-ink-2)}
+.sec-lead b{color:var(--ink);font-weight:600}
+.light .sec-lead b{color:var(--light-ink)}
+
+/* seções claras + transições ------------------------------------------------ */
+.light{background:var(--light);color:var(--light-ink)}
+.light.section{
+  margin-top:-52px;padding-top:calc(clamp(96px,13vh,160px) + 52px);
+  border-radius:44px 44px 0 0;
+  box-shadow:0 -30px 80px -40px rgba(0,0,0,.6), inset 0 2px 0 rgba(235,198,106,.55);
+  position:relative;z-index:6;
+}
+.dark-after{position:relative;z-index:5;margin-top:-44px;padding-top:calc(clamp(96px,13vh,160px) + 44px);
+  border-radius:44px 44px 0 0;background:var(--bg);
+  box-shadow:0 -30px 80px -40px rgba(0,0,0,.75), inset 0 2px 0 rgba(24,203,182,.4)}
+.sect-shape{position:absolute;top:0;left:0;width:100%;line-height:0;z-index:4;pointer-events:none}
+.sect-shape svg{display:block;width:100%;height:clamp(48px,6.5vw,94px)}
+.sect-shape .edge{fill:none;stroke:var(--gold);stroke-width:2;vector-effect:non-scaling-stroke;opacity:.85}
+
+/* capa ---------------------------------------------------------------------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;padding:120px 0 80px}
+.hero-bg{position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(24,203,182,.16), transparent 62%),
+    radial-gradient(ellipse 60% 50% at 78% 88%, rgba(46,154,214,.12), transparent 60%),
+    var(--bg)}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.hero-mark{width:min(180px,34vw);margin-bottom:34px;
+  filter:drop-shadow(0 0 60px rgba(24,203,182,.35))}
+.hero-word{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.9rem,9vw,6.6rem);line-height:.98;letter-spacing:-.02em;
+  text-transform:uppercase}
+.hero-word em{font-style:normal;color:var(--aqua)}
+.hero-tag{margin-top:26px;font-size:clamp(1.05rem,2vw,1.4rem);color:var(--ink-dim);max-width:34ch}
+.hero-date{margin-top:40px;display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--font-mono);font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(235,198,106,.32);border-radius:var(--pill);padding:11px 22px}
+.hero-cue{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:2;
+  width:22px;height:34px;border:1.5px solid var(--line-2);border-radius:var(--pill)}
+.hero-cue::after{content:"";position:absolute;left:50%;top:8px;width:3px;height:6px;border-radius:2px;
+  background:var(--aqua);transform:translateX(-50%);animation:cue 1.9s var(--ease) infinite}
+@keyframes cue{0%{opacity:0;transform:translate(-50%,0)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
+
+/* grelhas e cartões --------------------------------------------------------- */
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:34px 32px;
+  transition:border-color .3s var(--ease),transform .3s var(--ease)}
+.card:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.light .card{background:var(--light-2);border-color:rgba(10,23,27,.10);
+  box-shadow:0 20px 44px -34px rgba(10,23,27,.4)}
+.light .card:hover{border-color:rgba(10,23,27,.2)}
+
+.ic{width:30px;height:30px;color:var(--aqua);margin-bottom:20px;stroke-width:1.5}
+.light .ic{color:var(--aqua-2)}
+.ic-gold{color:var(--gold)}
+.light .ic-gold{color:var(--gold-deep)}
+
+.card-title{font-family:var(--font-display);font-weight:600;font-size:1.16rem;letter-spacing:-.01em;
+  margin-bottom:10px;color:var(--ink)}
+.light .card-title{color:var(--light-ink)}
+.card-text{color:var(--ink-dim);font-size:.98rem;line-height:1.62}
+.light .card-text{color:var(--light-ink-2)}
+
+/* prova de resultado -------------------------------------------------------- */
+.proof-panel{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,4vw,56px);align-items:center;
+  background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r-lg);
+  padding:clamp(30px,4vw,48px);box-shadow:0 30px 70px -46px rgba(10,23,27,.5)}
+.proof-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:14px}
+.proof-big{font-family:var(--font-display);font-weight:700;line-height:.92;letter-spacing:-.03em;
+  font-size:clamp(2.9rem,6.4vw,4.6rem);white-space:nowrap;font-variant-numeric:tabular-nums;
+  background:linear-gradient(118deg,#6E4A0E,#9A6E1B 48%,#C2932F);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.proof-note{margin-top:16px;color:var(--light-ink-2);font-size:1rem;max-width:26ch}
+.chartwrap{position:relative}
+.chart{width:100%;height:clamp(150px,20vw,215px);display:block;overflow:visible}
+.pw-line{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.9s var(--ease-expo)}
+.on .pw-line{stroke-dashoffset:0}
+.pw-area{opacity:0;transition:opacity 1s ease .5s}
+.on .pw-area{opacity:1}
+.pw-dot{fill:var(--gold-2);opacity:0;transition:opacity .5s ease 1.3s}
+.on .pw-dot{opacity:1}
+
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:26px}
+.shot{background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r);
+  padding:20px;box-shadow:0 20px 44px -34px rgba(10,23,27,.4)}
+.shot-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--light-ink-2);margin-bottom:14px}
+.shot img{width:100%;max-height:300px;object-fit:contain;border-radius:var(--r-sm);
+  background:#0d1117}
+.shot-val{font-family:var(--font-display);font-weight:700;font-size:1.9rem;letter-spacing:-.02em;
+  color:var(--gold-deep);margin-top:16px;font-variant-numeric:tabular-nums}
+.shot-sub{color:var(--light-ink-2);font-size:.92rem;margin-top:2px}
+
+/* estatísticas em arco ------------------------------------------------------ */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px)}
+.stat{text-align:center}
+.arc{width:clamp(140px,15vw,182px);height:clamp(140px,15vw,182px);margin:0 auto 22px;display:block}
+.arc-track{fill:none;stroke:rgba(255,255,255,.07);stroke-width:7}
+.light .arc-track{stroke:rgba(10,23,27,.09)}
+.arc-fill{fill:none;stroke:var(--aqua);stroke-width:7;stroke-linecap:round;
+  transform:rotate(-90deg);transform-origin:50% 50%;
+  stroke-dasharray:408;stroke-dashoffset:408;transition:stroke-dashoffset 1.7s var(--ease-expo)}
+.arc-gold .arc-fill{stroke:var(--gold)}
+.light .arc-gold .arc-fill{stroke:var(--gold-2)}
+.arc-num{font-family:var(--font-display);font-weight:700;font-size:1.65rem;letter-spacing:-.02em;
+  fill:var(--ink);font-variant-numeric:tabular-nums}
+.light .arc-num{fill:var(--light-ink)}
+.stat-lbl{font-family:var(--font-display);font-weight:600;font-size:1.06rem;color:var(--ink);margin-bottom:6px}
+.light .stat-lbl{color:var(--light-ink)}
+.stat-src{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;color:var(--ink-mut)}
+.light .stat-src{color:var(--light-ink-2)}
+
+/* linhas de destaque -------------------------------------------------------- */
+.row{display:flex;align-items:flex-start;gap:18px;padding:24px 28px;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:14px;
+  transition:border-color .3s var(--ease)}
+.row:hover{border-color:var(--line-2)}
+.light .row{background:var(--light-2);border-color:rgba(10,23,27,.10);
+  box-shadow:0 18px 40px -34px rgba(10,23,27,.4)}
+.row .ic{margin-bottom:0;flex:none;width:24px;height:24px;margin-top:2px}
+.row-title{font-family:var(--font-display);font-weight:600;font-size:1.06rem;color:var(--ink);margin-bottom:4px}
+.light .row-title{color:var(--light-ink)}
+.row-text{color:var(--ink-dim);font-size:.96rem;line-height:1.6}
+.light .row-text{color:var(--light-ink-2)}
+
+/* fluxo --------------------------------------------------------------------- */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.fstep{background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r);
+  padding:28px 22px;text-align:center;position:relative;
+  box-shadow:0 18px 40px -34px rgba(10,23,27,.4)}
+.fstep .ic{margin:0 auto 16px;color:var(--aqua-2)}
+.fstep-t{font-family:var(--font-display);font-weight:600;font-size:1.04rem;color:var(--light-ink)}
+.fstep-s{color:var(--light-ink-2);font-size:.86rem;margin-top:4px}
+.fstep::after{content:"";position:absolute;right:-11px;top:50%;width:10px;height:10px;
+  border-top:1.5px solid var(--gold-2);border-right:1.5px solid var(--gold-2);
+  transform:translateY(-50%) rotate(45deg);z-index:2}
+.fstep:last-child::after{display:none}
+
+/* iceberg ------------------------------------------------------------------- */
+.ice{width:min(940px,100%);margin:0 auto}
+.ice-lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-mut);margin-bottom:14px;text-align:center}
+.ice-tip{text-align:center;padding-bottom:8px}
+.ice-item{display:inline-block;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-sm);padding:15px 26px;font-family:var(--font-display);font-weight:600;
+  font-size:1.02rem;line-height:1.3;color:var(--ink)}
+.ice-top{border-color:var(--line-2)}
+.waterline{position:relative;height:1px;margin:26px 0 22px;
+  background:linear-gradient(90deg,transparent,var(--aqua),transparent);opacity:.75}
+.waterline span{position:absolute;right:0;top:-22px;font-family:var(--font-mono);font-size:.64rem;
+  letter-spacing:.2em;color:var(--aqua)}
+.ice-deep{padding:26px 22px 30px;border-radius:0 0 var(--r) var(--r);
+  background:linear-gradient(180deg,rgba(24,120,140,.09),rgba(10,40,60,.24) 70%,rgba(6,20,34,.34))}
+.ice-deep .ice-lbl{color:var(--aqua)}
+.deep-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.deep-grid .ice-item{font-size:.94rem;padding:13px 20px;background:rgba(16,34,44,.7)}
+
+/* ancoragem (ledger) -------------------------------------------------------- */
+.ledger-box{width:min(760px,100%);margin:0 auto;
+  background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r-lg);
+  padding:clamp(28px,4vw,44px);box-shadow:0 30px 70px -46px rgba(10,23,27,.5)}
+.ledger{list-style:none;display:flex;flex-direction:column}
+.ledger li{display:flex;align-items:baseline;gap:14px;padding:14px 0}
+.lg-name{color:var(--light-ink);font-size:.99rem;line-height:1.35;max-width:34ch;font-weight:500}
+.lg-name small{display:block;color:var(--light-ink-2);font-weight:400;font-size:.86rem;margin-top:2px}
+.lg-dots{flex:1;height:0;border-bottom:1.5px dotted rgba(10,23,27,.22);transform:translateY(-4px)}
+.lg-val{font-family:var(--font-mono);font-size:.94rem;color:var(--light-ink);flex:none;font-variant-numeric:tabular-nums}
+.ledger-total{display:flex;align-items:baseline;justify-content:space-between;gap:14px;
+  margin-top:24px;padding-top:24px;border-top:1px solid rgba(10,23,27,.14)}
+.lt-label{font-family:var(--font-display);font-weight:600;font-size:1.02rem;color:var(--light-ink)}
+.lt-val{position:relative;font-family:var(--font-display);font-weight:700;font-size:1.5rem;
+  color:var(--gold-deep);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.lt-val::after{content:"";position:absolute;left:-4%;top:52%;width:0;height:2px;background:var(--gold-deep);
+  transition:width .7s var(--ease-expo) .3s}
+.on .lt-val::after{width:108%}
+
+/* oferta -------------------------------------------------------------------- */
+.offer{position:relative;overflow:hidden;text-align:center}
+.offer-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center}
+.offer-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(8,11,16,.92),rgba(8,11,16,.78) 45%,rgba(8,11,16,.95))}
+.offer > .wrap{position:relative;z-index:2}
+.price{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;line-height:.92;
+  font-size:clamp(4rem,12vw,9rem);color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.price-alt{margin-top:14px;font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--aqua)}
+.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+  width:min(820px,100%);margin:46px auto 0}
+.offer-card{background:rgba(16,26,34,.72);backdrop-filter:blur(10px);
+  border:1px solid var(--line-2);border-radius:var(--r);padding:30px 26px}
+.offer-card .ic{margin:0 auto 16px}
+.offer-val{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--gold);letter-spacing:-.01em}
+.offer-sub{color:var(--ink-dim);font-size:.94rem;margin-top:6px}
+.offer-foot{margin-top:34px;font-family:var(--font-mono);font-size:.76rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-mut)}
+
+/* final --------------------------------------------------------------------- */
+.finale{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+.finale img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.finale-scrim{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(0deg,rgba(4,7,10,.94) 6%,rgba(4,7,10,.5) 42%,transparent 72%)}
+.finale .wrap{position:relative;z-index:2;padding-bottom:clamp(70px,11vh,120px)}
+.finale-title{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;line-height:1;
+  font-size:clamp(2.4rem,7vw,5.2rem);text-transform:uppercase}
+.finale-sub{margin-top:12px;font-family:var(--font-display);font-weight:600;
+  font-size:clamp(1.2rem,3vw,2.1rem);color:var(--gold);letter-spacing:-.01em;text-transform:uppercase}
+.finale-date{margin-top:30px;display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--font-mono);font-size:.84rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);
+  border:1px solid var(--line-2);border-radius:var(--pill);padding:12px 24px}
+
+/* reveal -------------------------------------------------------------------- */
+.rv{opacity:0;transform:translateY(26px);
+  transition:opacity .9s var(--ease-expo),transform .9s var(--ease-expo)}
+.rv.on{opacity:1;transform:none}
+.rv-d1{transition-delay:.09s}.rv-d2{transition-delay:.18s}.rv-d3{transition-delay:.27s}
+
+@media (prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  .pw-line{stroke-dashoffset:0}.pw-area,.pw-dot{opacity:1}
+  .arc-fill{transition:none}
+  .hero-cue::after{animation:none}
+  html{scroll-behavior:auto}
+}
+
+/* responsivo ---------------------------------------------------------------- */
+@media(max-width:960px){
+  .proof-panel{grid-template-columns:1fr;gap:32px}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .fstep:nth-child(2)::after{display:none}
+  .stats{grid-template-columns:1fr;gap:44px}
+}
+@media(max-width:760px){
+  .g2,.g3{grid-template-columns:1fr}
+  .shots{grid-template-columns:1fr}
+  .offer-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .fstep::after{display:none}
+  .nav-date{display:none}
+  .light.section,.dark-after{border-radius:32px 32px 0 0}
+  /* piso de 16px pro texto corrido no celular */
+  .card-text,.row-text,.shot-sub,.lg-name{font-size:1rem}
+  .lg-name small{font-size:.92rem}
+}
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" aria-hidden="true"><span></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <img src="img/logo_ow.webp" alt="Organic Wave" width="38" height="33">
+      <span class="brand-name">Organic<span>Wave</span></span>
+    </div>
+    <span class="nav-date">22 de julho, 20h</span>
+  </div>
+</header>
+
+<main>
+
+<!-- CAPA -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-inner wrap">
+    <img src="img/logo_ow.webp" alt="Organic Wave" class="hero-mark rv" width="180" height="156" fetchpriority="high">
+    <h1 class="hero-word rv rv-d1">O oceano de<br><em>dólares</em></h1>
+    <p class="hero-tag rv rv-d2">Vender no maior mercado de suplementos do mundo sem gastar um real em tráfego pago.</p>
+    <div class="hero-date rv rv-d3">Live de lançamento, 22 de julho</div>
+  </div>
+  <div class="hero-cue" aria-hidden="true"></div>
+</section>
+
+<!-- O RESULTADO (claro) -->
+<section class="section light" id="resultado">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker rv">O resultado</span>
+      <h2 class="sec-title rv rv-d1">Isso é lucro.<br>Não faturamento.</h2>
+      <p class="sec-lead rv rv-d2">Sem custo de anúncio comendo a margem, o que entra fica. Tudo <b>100 por cento orgânico</b>, sem investir um real em tráfego pago.</p>
+    </div>
+
+    <div class="proof-panel rv">
+      <div>
+        <div class="proof-tag">Lucro dos últimos 30 dias</div>
+        <div class="proof-big" data-count="60000" data-prefix="R$ ">R$ 60.000</div>
+        <p class="proof-note">Margem de 95 por cento. O que entra, fica.</p>
+      </div>
+      <div class="chartwrap">
+        <svg class="chart" viewBox="0 0 560 220" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="fillGold" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#C99A3E" stop-opacity=".3"/>
+              <stop offset="1" stop-color="#C99A3E" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="0" y1="185" x2="560" y2="185" stroke="rgba(10,23,27,.10)" stroke-width="1"/>
+          <line x1="0" y1="120" x2="560" y2="120" stroke="rgba(10,23,27,.07)" stroke-width="1"/>
+          <line x1="0" y1="55" x2="560" y2="55" stroke="rgba(10,23,27,.07)" stroke-width="1"/>
+          <path class="pw-area" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18 L560,220 L0,220 Z" fill="url(#fillGold)"/>
+          <path class="pw-line" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18" fill="none" stroke="#A9791F" stroke-width="3.4" stroke-linecap="round"/>
+          <circle class="pw-dot" cx="175" cy="132" r="3.5"/><circle class="pw-dot" cx="355" cy="78" r="3.5"/><circle class="pw-dot" cx="560" cy="18" r="4.5"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="shots">
+      <div class="shot rv">
+        <div class="shot-lbl">Mês passado, junho</div>
+        <img src="img/print_mes.jpg" alt="Painel de comissões mostrando o fechamento de junho" loading="lazy" decoding="async">
+        <div class="shot-val" data-count="9420" data-prefix="US$ ">US$ 9.420</div>
+        <p class="shot-sub">Cerca de R$ 50 mil, com margem de 95 por cento.</p>
+      </div>
+      <div class="shot rv rv-d1">
+        <div class="shot-lbl">Este mês, só os primeiros 15 dias</div>
+        <img src="img/print_15d.jpg" alt="Painel de lucro dos primeiros quinze dias do mês" loading="lazy" decoding="async">
+        <div class="shot-val" data-count="34992" data-prefix="R$ ">R$ 34.992</div>
+        <p class="shot-sub">E o mês nem acabou.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO UMA ONDA MORRE (escuro) -->
+<section class="section dark-after" id="morre">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker rv">A análise, parte um</span>
+      <h2 class="sec-title rv rv-d1">Como uma onda <span class="accent">morre</span></h2>
+      <p class="sec-lead rv rv-d2">Antes de te mostrar como cheguei nesse resultado, você precisa entender uma coisa: <b>o mercado é feito de ondas</b>. E toda onda morre por dois fatores. Nunca é aleatório.</p>
+    </div>
+    <div class="grid g2">
+      <article class="card rv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+        <h3 class="card-title">Leilão saturado</h3>
+        <p class="card-text">Milhares de afiliados brigando pelo mesmo leilão. No Google fundo de funil, só sobrevive quem tem afiliação fechada. O resto sangra num CPC que não para de subir. O custo de aquisição deixa de fechar e a maioria é expulsa do mercado, mesmo com a demanda intacta.</p>
+      </article>
+      <article class="card rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        <h3 class="card-title">A plataforma muda as regras</h3>
+        <p class="card-text">A plataforma muda as regras e mata o modelo. TikTok Shop nos Estados Unidos virou onda de ban, perda de saldo e violação em massa. YouTube dark travou com Veo3 e conteúdo inautêntico, com desmonetização em peso. A demanda segue viva. O método de aquisição antigo é que morreu.</p>
+      </article>
+    </div>
+
+    <div class="row rv" style="margin-top:34px">
+      <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h20"/><path d="M6 8c1.5 2 3 2 4.5 0S13.5 6 15 8s3 2 4.5 0"/><path d="M6 16c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0"/></svg>
+      <div>
+        <div class="row-title">O tráfego pago virou terreno de tubarão</div>
+        <p class="row-text">Quem gasta milhão por dia dita o preço do leilão. Tem gente escalando Ads que fecha o mês no vermelho, sem margem para erro. Nesse mar sangrento, quem começa de baixo não tem vez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO UMA ONDA NASCE (claro, divisor em onda) -->
+<section class="section light" id="nasce">
+  <div class="sect-shape" aria-hidden="true">
+    <svg viewBox="0 0 1440 96" preserveAspectRatio="none">
+      <path d="M0,0 H1440 V40 C1180,96 1000,18 720,44 C420,72 250,8 0,50 Z" fill="#080B10"/>
+      <path class="edge" d="M0,50 C250,8 420,72 720,44 C1000,18 1180,96 1440,40"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker rv">A análise, parte dois</span>
+      <h2 class="sec-title rv rv-d1">Como uma onda <span class="accent">nasce</span></h2>
+      <p class="sec-lead rv rv-d2">É o oposto exato. Ela nasce quando <b>duas coisas se encontram</b>: um mercado com demanda gigante e já validada, e um modelo de aquisição novo que ainda não saturou. Quando os dois batem, quem entra cedo pega a onda limpa.</p>
+    </div>
+    <div class="grid g2">
+      <article class="card rv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <h3 class="card-title">Mercado validado</h3>
+        <p class="card-text">Não adianta modelo genial em mercado pequeno. Precisa de um oceano de compradores com fome real e recorrência, um mercado que já move bilhões e não vai secar. O nutra nos Estados Unidos é exatamente isso.</p>
+      </article>
+      <article class="card rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
+        <h3 class="card-title">Novo modelo de aquisição</h3>
+        <p class="card-text">De nada serve a demanda se você não alcança o comprador sem sangrar no leilão. O modelo novo é uma porta de entrada que ainda não encareceu, com passo a passo validado em vez de tentativa e erro. É o orgânico em vídeo curto.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS DO MERCADO (escuro, gráficos) -->
+<section class="section dark-after" id="mercado">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="kicker rv">Os números que provam</span>
+      <h2 class="sec-title rv rv-d1">O nutra nos Estados Unidos<br><span class="accent">não morreu</span></h2>
+    </div>
+
+    <div class="stats">
+      <div class="stat rv">
+        <svg class="arc arc-gold" viewBox="0 0 150 150" aria-hidden="true">
+          <circle class="arc-track" cx="75" cy="75" r="65"/>
+          <circle class="arc-fill" cx="75" cy="75" r="65" data-pct="88"/>
+          <text class="arc-num" x="75" y="82" text-anchor="middle" data-count="69" data-prefix="US$ " data-suffix=" bi">US$ 69 bi</text>
+        </svg>
+        <div class="stat-lbl">Mercado de suplementos</div>
+        <div class="stat-src">Nutrition Business Journal, 2024</div>
+      </div>
+      <div class="stat rv rv-d1">
+        <svg class="arc" viewBox="0 0 150 150" aria-hidden="true">
+          <circle class="arc-track" cx="75" cy="75" r="65"/>
+          <circle class="arc-fill" cx="75" cy="75" r="65" data-pct="75"/>
+          <text class="arc-num" x="75" y="82" text-anchor="middle" data-count="75" data-suffix="%">75%</text>
+        </svg>
+        <div class="stat-lbl">Dos americanos usam suplemento</div>
+        <div class="stat-src">CRN Consumer Survey, 2024</div>
+      </div>
+      <div class="stat rv rv-d2">
+        <svg class="arc" viewBox="0 0 150 150" aria-hidden="true">
+          <circle class="arc-track" cx="75" cy="75" r="65"/>
+          <circle class="arc-fill" cx="75" cy="75" r="65" data-pct="80"/>
+          <text class="arc-num" x="75" y="82" text-anchor="middle" data-count="80" data-suffix="%">80%</text>
+        </svg>
+        <div class="stat-lbl">Dos adultos 60 mais compram recorrente</div>
+        <div class="stat-src">CDC, o público com cartão na mão</div>
+      </div>
+    </div>
+
+    <p class="sec-lead rv" style="margin:56px auto 0;text-align:center;max-width:700px"><b>Não foi o mercado que morreu, foi o modelo de aquisição de lead.</b> Resolvendo a aquisição, você volta a vender no maior mercado do mundo.</p>
+  </div>
+</section>
+
+<!-- A PRANCHA CERTA (claro) -->
+<section class="section light" id="prancha">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker rv">A solução</span>
+      <h2 class="sec-title rv rv-d1">A prancha certa</h2>
+      <p class="sec-lead rv rv-d2">Aquisição orgânica em <b>vídeo curto</b> nas redes sociais.</p>
+    </div>
+    <div class="row rv">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <div>
+        <div class="row-title">O público certo</div>
+        <p class="row-text">A entrega orgânica alcança o comprador americano de 45 anos para cima, quem tem cartão e compra suplemento todo mês.</p>
+      </div>
+    </div>
+    <div class="row rv rv-d1">
+      <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <div>
+        <div class="row-title">Zero custo de mídia</div>
+        <p class="row-text">Você não paga para aparecer. Sem leilão, sem CPM. Cada venda é margem cheia.</p>
+      </div>
+    </div>
+    <div class="row rv rv-d2">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c1.5 2 3 2 4.5 0S9.5 4 11 6s3 2 4.5 0S18.5 4 20 6"/><path d="M2 12c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/><path d="M2 18c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/></svg>
+      <div>
+        <div class="row-title">Distribuição a favor</div>
+        <p class="row-text">A plataforma ainda entrega orgânico de vídeo curto com força. A onda está subindo, não descendo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ICEBERG (escuro, divisor diagonal) -->
+<section class="section dark-after" id="iceberg">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="kicker rv">O que ninguém percebeu ainda</span>
+      <h2 class="sec-title rv rv-d1">Isso é muito maior<br>que <span class="accent">nutra</span></h2>
+    </div>
+
+    <div class="ice rv">
+      <div class="ice-tip">
+        <div class="ice-lbl">O que todo mundo vê</div>
+        <div class="ice-item ice-top">Vender nutra VSL no orgânico</div>
+      </div>
+      <div class="waterline"><span>Nível da água</span></div>
+      <div class="ice-deep">
+        <div class="ice-lbl">O que o método de criação de vídeo realmente destrava</div>
+        <div class="deep-grid">
+          <div class="ice-item">Infoproduto com IA</div>
+          <div class="ice-item">Nutra Amazon DTC</div>
+          <div class="ice-item">E-commerce no orgânico</div>
+          <div class="ice-item">Recorrência</div>
+          <div class="ice-item">Qualquer oferta que precise de atenção</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="sec-lead rv" style="margin:50px auto 0;text-align:center;max-width:680px"><b>Você não está aprendendo a vender nutra.</b> Está dominando a habilidade de transformar atenção orgânica em venda, e ela abre <span class="accent">todos esses mercados</span>.</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA (claro, divisor em onda) -->
+<section class="section light" id="como">
+  <div class="sect-shape" aria-hidden="true">
+    <svg viewBox="0 0 1440 96" preserveAspectRatio="none">
+      <path d="M0,0 H1440 V52 C1120,10 980,84 700,48 C440,14 260,80 0,36 Z" fill="#080B10"/>
+      <path class="edge" d="M0,36 C260,80 440,14 700,48 C980,84 1120,10 1440,52"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="kicker rv">O sistema</span>
+      <h2 class="sec-title rv rv-d1">Simples assim</h2>
+    </div>
+
+    <div class="flow">
+      <div class="fstep rv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+        <div class="fstep-t">Cria com IA</div>
+        <div class="fstep-s">Modelo validado</div>
+      </div>
+      <div class="fstep rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
+        <div class="fstep-t">Publica</div>
+        <div class="fstep-s">No orgânico</div>
+      </div>
+      <div class="fstep rv rv-d2">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+        <div class="fstep-t">Gringo compra</div>
+        <div class="fstep-s">Oferta validada</div>
+      </div>
+      <div class="fstep rv rv-d3">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        <div class="fstep-t">Você recebe</div>
+        <div class="fstep-s">Em dólar</div>
+      </div>
+    </div>
+
+    <div class="grid g3" style="margin-top:44px">
+      <article class="card rv">
+        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <h3 class="card-title">Cem por cento lucro</h3>
+        <p class="card-text">Zero gasto em anúncio.</p>
+      </article>
+      <article class="card rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/><path d="M2 18c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/><path d="M2 6c1.5 2 3 2 4.5 0S9.5 4 11 6s3 2 4.5 0S18.5 4 20 6"/></svg>
+        <h3 class="card-title">Sem leilão</h3>
+        <p class="card-text">Você não briga com tubarão.</p>
+      </article>
+      <article class="card rv rv-d2">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        <h3 class="card-title">Risco zero de mídia</h3>
+        <p class="card-text">Não tem saldo para queimar.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORIA + ARSENAL (escuro) -->
+<section class="section dark-after" id="mentoria">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker rv">Tudo incluído</span>
+      <h2 class="sec-title rv rv-d1">Mentoria <span class="accent">Organic Wave</span></h2>
+    </div>
+    <div class="grid g3">
+      <article class="card rv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <h3 class="card-title">Ferramental gravado</h3>
+        <p class="card-text">O método passo a passo, do fundamento à escala. Você assiste no seu ritmo.</p>
+      </article>
+      <article class="card rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg>
+        <h3 class="card-title">Quatro semanas ao vivo</h3>
+        <p class="card-text">Execução comigo, mão na massa no seu caso. Não é aula falada.</p>
+      </article>
+      <article class="card rv rv-d2">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+        <h3 class="card-title">Suporte direto</h3>
+        <p class="card-text">Grupo e WhatsApp individual comigo e com a minha esposa.</p>
+      </article>
+    </div>
+
+    <div class="sec-head" style="margin-top:96px">
+      <span class="kicker rv">Bônus exclusivos</span>
+      <h2 class="sec-title rv rv-d1">O <span class="accent-gold">arsenal</span></h2>
+      <p class="sec-lead rv rv-d2">A tecnologia da minha operação, na sua mão. <b>O que nenhum concorrente entrega.</b></p>
+    </div>
+    <div class="grid g3">
+      <article class="card rv">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+        <h3 class="card-title">Agente de copy</h3>
+        <p class="card-text">Você joga a ideia e ele devolve a copy pronta e validada, no padrão que já converte no mercado americano. Sem travar em página em branco.</p>
+      </article>
+      <article class="card rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+        <h3 class="card-title">Agente de animação</h3>
+        <p class="card-text">Pega a copy do primeiro agente e transforma em vídeo pronto para postar. Da ideia ao criativo final sem abrir editor nem gravar nada.</p>
+      </article>
+      <article class="card rv rv-d2">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <h3 class="card-title">Agente de decupagem</h3>
+        <p class="card-text">Aponta para qualquer criativo que já está bombando e ele devolve a estrutura por trás: hook, ângulo, ritmo. Você para de adivinhar e passa a modelar o que vence.</p>
+      </article>
+      <article class="card rv">
+        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+        <h3 class="card-title">Swipe file com mais de 30 perfis</h3>
+        <p class="card-text">O mapa dos perfis que mais faturam no nicho, atualizado toda vez que eu garimpo um novo. Você começa modelando quem já escalou.</p>
+      </article>
+      <article class="card rv rv-d1">
+        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v6"/><path d="M7 7h6"/><path d="M7 11h4"/><circle cx="17.5" cy="17.5" r="3.5"/><path d="M21 21l-1.2-1.2"/></svg>
+        <h3 class="card-title">VSLs validadas</h3>
+        <p class="card-text">Ofertas de produtor grande que já rodaram milhões de dólares. Você não cria VSL nem testa oferta: pluga sua presell e começa vendendo o que já vende.</p>
+      </article>
+      <article class="card rv rv-d2">
+        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+        <h3 class="card-title">Você só pluga</h3>
+        <p class="card-text">Todo o sistema já montado. Sua única função é conectar a presell na estrutura e ligar a máquina. O resto do arsenal faz o trabalho pesado.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ANCORAGEM (claro) -->
+<section class="section light" id="ancoragem">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="kicker rv">Faz a conta</span>
+      <h2 class="sec-title rv rv-d1">Quanto isso vale<br>de verdade</h2>
+    </div>
+
+    <div class="ledger-box rv">
+      <ul class="ledger">
+        <li>
+          <span class="lg-name">Método completo e quatro semanas de calls ao vivo<small>Execução comigo, não aula falada</small></span>
+          <span class="lg-dots"></span><span class="lg-val">R$ 2.997</span>
+        </li>
+        <li>
+          <span class="lg-name">Agente de prompts validado<small>Copy pronta para Veo3, HeyGen e qualquer motor</small></span>
+          <span class="lg-dots"></span><span class="lg-val">R$ 397</span>
+        </li>
+        <li>
+          <span class="lg-name">Agente de animação e decupagem<small>Da copy ao vídeo, e clone de criativo vencedor</small></span>
+          <span class="lg-dots"></span><span class="lg-val">R$ 797</span>
+        </li>
+        <li>
+          <span class="lg-name">Swipe file com mais de 30 perfis escalados<small>Com atualização contínua da garimpagem</small></span>
+          <span class="lg-dots"></span><span class="lg-val">R$ 497</span>
+        </li>
+        <li>
+          <span class="lg-name">VSLs validadas e suporte individual no WhatsApp<small>Ofertas que já rodaram milhões, comigo e com a minha esposa do seu lado</small></span>
+          <span class="lg-dots"></span><span class="lg-val">R$ 1.497</span>
+        </li>
+      </ul>
+      <div class="ledger-total">
+        <span class="lt-label">Valor total empilhado</span>
+        <span class="lt-val">R$ 6.185</span>
+      </div>
+    </div>
+
+    <p class="sec-lead rv" style="margin:38px auto 0;text-align:center;max-width:560px"><b>E você não vai pagar nem perto disso.</b></p>
+  </div>
+</section>
+
+<!-- OFERTA (escuro, foto) -->
+<section class="section offer dark-after" id="oferta">
+  <div class="offer-bg" style="background-image:url('img/wave.jpg')" aria-hidden="true"></div>
+  <div class="offer-scrim" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kicker rv">Oferta fundadores</span>
+    <div class="price rv rv-d1">R$ 3.997</div>
+    <div class="price-alt rv rv-d2">ou 12x de R$ 397</div>
+
+    <div class="offer-grid">
+      <div class="offer-card rv">
+        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 1-2-2 2 2 0 0 1 2-2h13"/><path d="M17 13h.01"/></svg>
+        <div class="offer-val">R$ 2.000 no Pix</div>
+        <p class="offer-sub">De volta para o primeiro comprador.</p>
+      </div>
+      <div class="offer-card rv rv-d1">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+        <div class="offer-val">Editor automático</div>
+        <p class="offer-sub">Grátis para os 10 primeiros. Do 11º em diante, R$ 497.</p>
+      </div>
+    </div>
+
+    <p class="offer-foot rv">Turma de fundadores, fecha quando encher</p>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="finale">
+  <img src="img/surfer.jpg" alt="Surfista dentro do tubo de uma onda ao amanhecer" loading="lazy">
+  <div class="finale-scrim" aria-hidden="true"></div>
+  <div class="wrap">
+    <h2 class="finale-title rv">A onda <span class="accent">passa.</span></h2>
+    <div class="finale-sub rv rv-d1">E ela não volta nunca mais.</div>
+    <div class="finale-date rv rv-d2">22 de julho, 20h</div>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* progresso do scroll: scaleX no compositor, sem layout por frame */
+  var bar = document.querySelector(".scroll-progress span");
+  var nav = document.getElementById("nav");
+  var max = 0, tick = false, wasScrolled = null;
+  function measure(){ var h = document.documentElement; max = h.scrollHeight - h.clientHeight; }
+  function paint(){
+    tick = false;
+    var top = document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (bar) bar.style.transform = "scaleX(" + (max > 0 ? top / max : 0).toFixed(4) + ")";
+    var s = top > 40;
+    if (nav && s !== wasScrolled){ nav.classList.toggle("scrolled", s); wasScrolled = s; }
+  }
+  function onScroll(){ if (tick) return; tick = true; requestAnimationFrame(paint); }
+  document.addEventListener("scroll", onScroll, { passive:true });
+  window.addEventListener("resize", function(){ measure(); onScroll(); }, { passive:true });
+  measure(); paint();
+
+  /* contadores com largura estavel (tabular-nums no CSS) */
+  function fmt(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); }
+  function countUp(el){
+    var target = parseFloat(el.getAttribute("data-count"));
+    var pre = el.getAttribute("data-prefix") || "";
+    var suf = el.getAttribute("data-suffix") || "";
+    if (reduced){ el.textContent = pre + fmt(target) + suf; return; }
+    var t0 = null, dur = 1700;
+    function step(now){
+      if (t0 === null) t0 = now;
+      var p = Math.min((now - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + fmt(target * eased) + suf;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = pre + fmt(target) + suf;
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* arcos: preenche o stroke conforme o percentual */
+  function drawArc(svg){
+    var fill = svg.querySelector(".arc-fill");
+    if (!fill) return;
+    var r = parseFloat(fill.getAttribute("r"));
+    var c = 2 * Math.PI * r;
+    var pct = parseFloat(fill.getAttribute("data-pct")) / 100;
+    fill.style.strokeDasharray = c;
+    fill.style.strokeDashoffset = reduced ? c * (1 - pct) : c;
+    if (!reduced) requestAnimationFrame(function(){ fill.style.strokeDashoffset = c * (1 - pct); });
+  }
+
+  /* reveal + disparo das animacoes de dado */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      el.classList.add("on");
+      if (el.hasAttribute("data-count")) countUp(el);
+      el.querySelectorAll && el.querySelectorAll("[data-count]").forEach(countUp);
+      if (el.classList.contains("arc")) drawArc(el);
+      el.querySelectorAll && el.querySelectorAll(".arc").forEach(drawArc);
+      io.unobserve(el);
+    });
+  }, { threshold:.2, rootMargin:"0px 0px -8% 0px" });
+
+  document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
+  document.querySelectorAll(".proof-panel").forEach(function(el){ io.observe(el); });
+  document.querySelectorAll(".ledger-box").forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
