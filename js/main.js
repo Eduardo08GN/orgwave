@@ -12,15 +12,34 @@
   /* ---- barra de progresso do scroll ---- */
   var bar = document.querySelector(".scroll-progress span");
   var nav = document.getElementById("nav");
-  function onScroll() {
+  var scrollMax = 0, scrollTick = false, wasScrolled = null;
+
+  function measureScroll() {
     var h = document.documentElement;
-    var max = h.scrollHeight - h.clientHeight;
-    var p = max > 0 ? (h.scrollTop || document.body.scrollTop) / max : 0;
-    if (bar) bar.style.width = (p * 100).toFixed(2) + "%";
-    if (nav) nav.classList.toggle("scrolled", (h.scrollTop || 0) > 40);
+    scrollMax = h.scrollHeight - h.clientHeight;
+  }
+  function paintScroll() {
+    scrollTick = false;
+    var h = document.documentElement;
+    var top = h.scrollTop || document.body.scrollTop || 0;
+    var p = scrollMax > 0 ? top / scrollMax : 0;
+    // scaleX em vez de width: fica no compositor, sem layout a cada frame
+    if (bar) bar.style.transform = "scaleX(" + p.toFixed(4) + ")";
+    var isScrolled = top > 40;
+    if (nav && isScrolled !== wasScrolled) {
+      nav.classList.toggle("scrolled", isScrolled);
+      wasScrolled = isScrolled;
+    }
+  }
+  function onScroll() {
+    if (scrollTick) return;
+    scrollTick = true;
+    requestAnimationFrame(paintScroll);
   }
   document.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  window.addEventListener("resize", function () { measureScroll(); onScroll(); }, { passive: true });
+  measureScroll();
+  paintScroll();
 
   /* ---- checkout placeholder (trocar pela URL real da Kiwify) ---- */
   var CHECKOUT_URL = ""; // ex: "https://pay.kiwify.com.br/xxxxx"
@@ -37,6 +56,30 @@
   });
 
   initCoverflow();
+
+  /* ---- vídeo do hero: sai do caminho crítico ----
+     O poster (webp) segura o visual desde o primeiro paint; o mp4 só começa a
+     baixar depois do load, então não disputa banda com a LCP, a CSS e as fontes.
+     Visualmente idêntico: quando o vídeo chega, ele entra no lugar do poster. */
+  (function () {
+    var vid = document.querySelector(".hero-vid");
+    if (!vid) return;
+    function activate() {
+      var src = vid.querySelector("source[data-src]");
+      if (src && !src.getAttribute("src")) {
+        src.setAttribute("src", src.getAttribute("data-src"));
+        vid.load();
+      }
+      var p = vid.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    function schedule() {
+      if (window.requestIdleCallback) requestIdleCallback(activate, { timeout: 1500 });
+      else setTimeout(activate, 200);
+    }
+    if (document.readyState === "complete") schedule();
+    else window.addEventListener("load", schedule, { once: true });
+  })();
 
   /* ---- lazy-load do vídeo de fundo da oferta (só baixa perto da seção) ---- */
   (function () {
@@ -215,8 +258,24 @@
       render();
     }
 
-    var last = 0;
+    var last = 0, running = false, visible = false;
+
+    // molas paradas? então não há nada pra desenhar até a próxima interação.
+    function isSettled() {
+      for (var i = 0; i < n; i++) {
+        var t = targets(i), s = st[i];
+        if (Math.abs(s.x.p - t.x) > 0.1 || Math.abs(s.x.v) > 0.1) return false;
+        if (Math.abs(s.z.p - t.z) > 0.1 || Math.abs(s.z.v) > 0.1) return false;
+        if (Math.abs(s.r.p - t.r) > 0.01 || Math.abs(s.r.v) > 0.01) return false;
+        if (Math.abs(s.o.p - t.o) > 0.002 || Math.abs(s.o.v) > 0.002) return false;
+        if (Math.abs(s.b.p - t.b) > 0.01 || Math.abs(s.b.v) > 0.01) return false;
+        if (Math.abs(s.s.p - t.s) > 0.001 || Math.abs(s.s.v) > 0.001) return false;
+      }
+      return true;
+    }
+
     function frame(now) {
+      if (!running) return;
       var dt = last ? Math.min((now - last) / 1000, 1 / 30) : 1 / 60;
       last = now;
       cards.forEach(function (card, i) {
@@ -230,6 +289,14 @@
         }
       });
       render();
+      // dorme quando assentou; qualquer interação chama wake() de volta
+      if (!dragging && isSettled()) { running = false; return; }
+      requestAnimationFrame(frame);
+    }
+
+    function wake() {
+      if (running || reduced || !visible) return;
+      running = true; last = 0;
       requestAnimationFrame(frame);
     }
 
@@ -241,9 +308,9 @@
       }
       if (count) count.textContent = (active + 1) + " / " + n;
     }
-    function go(dir) { active = (active + dir + n) % n; meta(); if (reduced) settle(); }
-    function setActive(i) { active = ((i % n) + n) % n; meta(); if (reduced) settle(); }
-    function start() { if (!reduced && !auto) auto = setInterval(function () { go(1); }, 5000); }
+    function go(dir) { active = (active + dir + n) % n; meta(); if (reduced) settle(); else wake(); }
+    function setActive(i) { active = ((i % n) + n) % n; meta(); if (reduced) settle(); else wake(); }
+    function start() { if (!reduced && visible && !auto) auto = setInterval(function () { go(1); }, 5000); }
     function stop() { if (auto) { clearInterval(auto); auto = null; } }
     function restart() { stop(); start(); }
 
@@ -265,6 +332,7 @@
       if (reduced) return;
       var dx = e.clientX - startX;
       dragOffset = Math.max(-1.4, Math.min(1.4, (dx / xMult()) * 0.9));
+      wake();
     });
     window.addEventListener("pointerup", function (e) {
       if (!dragging) return;
@@ -277,16 +345,30 @@
         if (Math.abs(power) > 9000 || Math.abs(dx) > xMult() * 0.55) go(dx < 0 ? 1 : -1);
       }
       dragOffset = 0;
+      wake();
       restart();
     });
     stage.addEventListener("mouseenter", stop);
     stage.addEventListener("mouseleave", start);
-    window.addEventListener("resize", function () { if (reduced) settle(); }, { passive: true });
+    window.addEventListener("resize", function () { if (reduced) settle(); else wake(); }, { passive: true });
 
     settle(); // posiciona instantâneo no estado inicial
     meta();
-    if (!reduced) requestAnimationFrame(frame);
-    start();
+
+    // fora da tela não anima e não roda o autoplay: o rAF só existe enquanto a
+    // seção está visível, e ainda dorme sozinho quando as molas assentam.
+    var cf = document.getElementById("coverflow") || stage;
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          visible = en.isIntersecting;
+          if (visible) { wake(); start(); }
+          else { running = false; stop(); }
+        });
+      }, { rootMargin: "200px 0px" }).observe(cf);
+    } else {
+      visible = true; wake(); start();
+    }
   }
 
 })();

@@ -6,7 +6,7 @@
 <base href="/organicwave/" />
 <title>Organic Wave | A próxima onda orgânica do digital</title>
 <meta name="description" content="Aprenda a vender no maior mercado de suplementos do mundo com aquisição 100 por cento orgânica em vídeo curto. Sem tráfego pago. Sem leilão. Em dólar." />
-<link rel="icon" type="image/png" href="assets/logo_ow.png" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Organic Wave | A próxima onda orgânica do digital" />
 <meta property="og:description" content="Venda no mercado americano com aquisição 100 por cento orgânica. Sem tráfego pago. Em dólar." />
@@ -17,9 +17,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://api.fontshare.com" />
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+<link rel="preload" as="image" href="assets/casal_hero.webp" fetchpriority="high" />
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/style.css?v=25" />
+<link rel="stylesheet" href="css/style.css?v=26" />
 <noscript>
   <style>.reveal,.hero-title .line{opacity:1!important;transform:none!important}</style>
 </noscript>
@@ -34,7 +36,7 @@
 <header class="nav" id="nav">
   <div class="nav-inner">
     <a class="brand" href="#topo" aria-label="Organic Wave">
-      <img src="assets/logo_ow.png" alt="Organic Wave" class="brand-mark" width="64" height="55" />
+      <img src="assets/logo_ow.webp" alt="Organic Wave" class="brand-mark" width="64" height="55" />
       <span class="brand-name">Organic<span class="brand-name-accent">Wave</span></span>
     </a>
     <a class="btn btn-ghost nav-cta" href="#oferta">Entrar na onda</a>
@@ -46,8 +48,8 @@
 <!-- HERO -->
 <section class="hero" id="hero" aria-label="Início">
   <div class="hero-video">
-    <video autoplay muted loop playsinline poster="assets/wave-poster.jpg" preload="auto">
-      <source src="assets/wave-bg.mp4" type="video/mp4" />
+    <video class="hero-vid" autoplay muted loop playsinline poster="assets/wave-poster.webp" preload="none">
+      <source data-src="assets/wave-bg.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-scrim"></div>
   </div>
@@ -77,7 +79,7 @@
     </div>
 
     <div class="hero-people">
-      <img src="assets/casal_hero.png" alt="Os fundadores da Organic Wave segurando pranchas da marca" width="489" height="657" />
+      <img src="assets/casal_hero.webp" alt="Os fundadores da Organic Wave segurando pranchas da marca" width="489" height="657" fetchpriority="high" decoding="async" />
     </div>
   </div>
 
@@ -155,23 +157,23 @@
   <div class="coverflow" id="coverflow" role="group" aria-label="Galeria">
     <div class="cf-stage" id="cfStage">
       <article class="cf-card">
-        <img src="assets/img/life-surf.webp" alt="Surfista dentro do tubo de uma onda" width="900" height="1200" loading="lazy" />
+        <img src="assets/img/life-surf.webp" alt="Surfista dentro do tubo de uma onda" width="900" height="1200" loading="lazy" decoding="async" />
         <span class="cf-copy">Quem chega primeiro bebe água limpa.</span>
       </article>
       <article class="cf-card">
-        <img src="assets/img/life-dollar.webp" alt="Notas de dólar americano" width="900" height="1200" loading="lazy" />
+        <img src="assets/img/life-dollar.webp" alt="Notas de dólar americano" width="900" height="1200" loading="lazy" decoding="async" />
         <span class="cf-copy">Você recebe em dólar.</span>
       </article>
       <article class="cf-card">
-        <img src="assets/img/life-seaplane.webp" alt="Hidroavião numa ilha tropical de águas turquesa" width="900" height="1200" loading="lazy" />
+        <img src="assets/img/life-seaplane.webp" alt="Hidroavião numa ilha tropical de águas turquesa" width="900" height="1200" loading="lazy" decoding="async" />
         <span class="cf-copy">100% lucro.</span>
       </article>
       <article class="cf-card">
-        <img src="assets/img/life-villa.webp" alt="Piscina de uma villa de luxo" width="900" height="1200" loading="lazy" />
+        <img src="assets/img/life-villa.webp" alt="Piscina de uma villa de luxo" width="900" height="1200" loading="lazy" decoding="async" />
         <span class="cf-copy">Sem leilão.</span>
       </article>
       <article class="cf-card">
-        <img src="assets/img/life-sunset.webp" alt="Praia ao pôr do sol com tons dourados" width="900" height="1200" loading="lazy" />
+        <img src="assets/img/life-sunset.webp" alt="Praia ao pôr do sol com tons dourados" width="900" height="1200" loading="lazy" decoding="async" />
         <span class="cf-copy">Risco zero de mídia.</span>
       </article>
     </div>
@@ -273,7 +275,7 @@
       </div>
       <div class="community-main">
         <figure class="community-media">
-          <img src="assets/img/meeting.webp" alt="Reunião ao vivo da comunidade em vídeo chamada" width="960" height="650" loading="lazy" />
+          <img src="assets/img/meeting.webp" alt="Reunião ao vivo da comunidade em vídeo chamada" width="960" height="650" loading="lazy" decoding="async" />
           <span class="live-badge"><span class="live-dot" aria-hidden="true"></span>ao vivo</span>
         </figure>
         <div class="community-info">
@@ -301,27 +303,27 @@
 
     <div class="cards">
       <article class="card card-img reveal">
-        <div class="card-media"><img src="assets/img/arsenal-copy.webp" alt="Mesa com laptop e caderno de anotações" width="680" height="400" loading="lazy" /></div>
+        <div class="card-media"><img src="assets/img/arsenal-copy.webp" alt="Mesa com laptop e caderno de anotações" width="680" height="400" loading="lazy" decoding="async" /></div>
         <div class="card-body"><h3>Agente de Copy</h3><p>Gera copy validada pronta pra usar, no padrão que já converte.</p></div>
       </article>
       <article class="card card-img reveal">
-        <div class="card-media"><img src="assets/img/arsenal-video.webp" alt="Timeline de edição de vídeo" width="680" height="400" loading="lazy" /></div>
+        <div class="card-media"><img src="assets/img/arsenal-video.webp" alt="Timeline de edição de vídeo" width="680" height="400" loading="lazy" decoding="async" /></div>
         <div class="card-body"><h3>Agente de Animação</h3><p>Transforma a copy em vídeo, de forma automática.</p></div>
       </article>
       <article class="card card-img reveal">
-        <div class="card-media"><img src="assets/img/arsenal-film.webp" alt="Projetor de filme antigo com rolos" width="680" height="400" loading="lazy" /></div>
+        <div class="card-media"><img src="assets/img/arsenal-film.webp" alt="Projetor de filme antigo com rolos" width="680" height="400" loading="lazy" decoding="async" /></div>
         <div class="card-body"><h3>Agente de Decupagem</h3><p>Clona a estrutura de qualquer criativo vencedor em segundos.</p></div>
       </article>
       <article class="card card-img reveal">
-        <div class="card-media"><img src="assets/img/arsenal-data.webp" alt="Laptop mostrando um painel de dados" width="680" height="400" loading="lazy" /></div>
+        <div class="card-media"><img src="assets/img/arsenal-data.webp" alt="Laptop mostrando um painel de dados" width="680" height="400" loading="lazy" decoding="async" /></div>
         <div class="card-body"><h3>Swipe File vivo</h3><p>Mais de 30 perfis escalados, com atualização contínua.</p></div>
       </article>
       <article class="card card-img reveal">
-        <div class="card-media"><img src="assets/img/arsenal-cinema.webp" alt="Poltronas de cinema vazias" width="680" height="400" loading="lazy" /></div>
+        <div class="card-media"><img src="assets/img/arsenal-cinema.webp" alt="Poltronas de cinema vazias" width="680" height="400" loading="lazy" decoding="async" /></div>
         <div class="card-body"><h3>VSLs validadas</h3><p>Ofertas que já rodaram milhões de dólares. Você só pluga a presell.</p></div>
       </article>
       <article class="card card-img card-bonus reveal">
-        <div class="card-media"><img src="assets/img/life-dollar.webp" alt="Notas de dólar americano" width="680" height="400" loading="lazy" /></div>
+        <div class="card-media"><img src="assets/img/arsenal-dollar.webp" alt="Notas de dólar americano" width="680" height="400" loading="lazy" decoding="async" /></div>
         <div class="card-body"><h3>Bônus de velocidade</h3><p>Primeiro comprador leva dois mil reais de volta no Pix. Os dez primeiros ganham o editor automático.</p></div>
       </article>
     </div>
@@ -396,7 +398,7 @@
     <div class="footer-top">
       <div class="footer-brandcol">
         <a class="brand" href="#topo" aria-label="Organic Wave">
-          <img src="assets/logo_ow.png" alt="Organic Wave" width="56" height="48" />
+          <img src="assets/logo_ow.webp" alt="Organic Wave" width="56" height="48" />
           <span class="brand-name">Organic<span class="brand-name-accent">Wave</span></span>
         </a>
         <p class="footer-tag">A próxima onda orgânica do digital. Venda no maior mercado de suplementos do mundo, em dólar, com aquisição 100 por cento orgânica.</p>
@@ -432,6 +434,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-<script src="js/main.js?v=24" defer></script>
+<script src="js/main.js?v=25" defer></script>
 </body>
 </html>
