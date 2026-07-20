@@ -76,6 +76,7 @@ ul{list-style:none}
 .scroll-progress span{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;
   background:linear-gradient(90deg,var(--ocean),var(--aqua))}
 .grain{position:fixed;inset:0;z-index:140;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  will-change:transform;transform:translateZ(0);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* tipografia de seção ------------------------------------------------------ */
@@ -205,6 +206,10 @@ ul{list-style:none}
   background:linear-gradient(118deg,#6E4A0E,#9A6E1B 48%,#C2932F);
   -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .prova-big-lbl{margin-top:16px;color:var(--light-ink-2);font-size:1.02rem;max-width:24ch}
+/* contadores animados: digitos de largura fixa (sem jitter frame-a-frame) e sem
+   quebra de linha no meio da contagem (o salto de altura empurraria a pagina) */
+.prova-big,.pnum,.market-num,.price-now{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.prova-big,.pnum,.price-now{white-space:nowrap}
 .prova-chartwrap{position:relative}
 .prova-chart{width:100%;height:clamp(148px,20vw,210px);display:block;overflow:visible}
 .pw-dot{fill:var(--gold-2)}
@@ -494,6 +499,9 @@ ul{list-style:none}
   .wrap,.nav-inner,.hero-grid{padding:0 18px}
   .hero{min-height:auto;padding:118px 0 60px}
   .hero-marks{flex-wrap:wrap;gap:10px}
+  /* 4 colunas ficam apertadas demais aqui: com o numero em nowrap estouraria a
+     celula. 2 colunas dao folga pro contador nao quebrar linha no meio da contagem */
+  .prova-stats{grid-template-columns:repeat(2,1fr)}
   .pstat{flex:1 1 100%}
   .cf-copy{font-size:1.05rem}
   .cards{grid-template-columns:1fr}
