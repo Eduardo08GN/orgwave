@@ -359,6 +359,47 @@ img,video{display:block;max-width:100%}
   .card-text,.row-text,.shot-sub,.lg-name{font-size:1rem}
   .lg-name small{font-size:.92rem}
 }
+
+/* como uma onda MORRE — preto e sangue, sem cards ------------------------- */
+.death{background:#050406;
+  box-shadow:0 -30px 80px -40px rgba(0,0,0,.9), inset 0 2px 0 rgba(229,72,77,.42)}
+.death::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(120% 62% at 12% 0%, rgba(201,26,32,.17), transparent 55%),
+    radial-gradient(90% 72% at 100% 104%, rgba(120,10,14,.24), transparent 60%)}
+.death > .wrap{position:relative;z-index:1}
+.death .kicker{color:#E5484D}
+.death .accent-red{color:#F0413B;text-shadow:0 0 40px rgba(240,65,59,.35)}
+.death .sec-lead b{color:#fff}
+
+.death-list{list-style:none;margin-top:8px}
+.death-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3.4vw,44px);
+  align-items:start;padding:clamp(30px,4vw,46px) 0;
+  border-top:1px solid rgba(240,65,59,.18)}
+.death-item:first-child{border-top:0;padding-top:8px}
+.death-num{font-family:var(--font-display);font-weight:700;line-height:.78;
+  font-size:clamp(3.2rem,7.2vw,5.8rem);letter-spacing:-.04em;
+  color:#170305;-webkit-text-stroke:1.4px rgba(240,65,59,.62);
+  font-variant-numeric:tabular-nums}
+.death-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(1.32rem,2.5vw,1.75rem);color:#fff;margin-bottom:12px}
+.death-text{color:#CBBCBD;font-size:1.03rem;line-height:1.66;max-width:62ch}
+.death .bleed{color:#F0413B;font-weight:600}
+
+.death-quote{position:relative;margin-top:clamp(42px,6vw,74px);max-width:920px;
+  padding:clamp(22px,3.4vw,38px) 0 clamp(22px,3.4vw,38px) clamp(26px,3vw,42px);
+  border-left:3px solid #E5484D;
+  background:linear-gradient(90deg,rgba(229,72,77,.12),rgba(229,72,77,0) 58%)}
+.death-quote p{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;
+  font-size:clamp(1.28rem,2.6vw,1.92rem);line-height:1.34;color:#ECE4E4}
+.death-quote b{color:#fff;font-weight:600}
+.death-quote b.bleed{color:#F0413B}
+
+@media(max-width:600px){
+  .death-item{grid-template-columns:1fr;gap:4px}
+  .death-num{font-size:2.9rem}
+  .death-text{font-size:1rem}
+}
 </style>
 </head>
 <body>
@@ -431,43 +472,44 @@ img,video{display:block;max-width:100%}
         <p class="shot-sub">Cerca de R$ 50 mil, com margem de 95 por cento.</p>
       </div>
       <div class="shot rv rv-d1">
-        <div class="shot-lbl">Este mês, só os primeiros 15 dias</div>
-        <img src="img/print_15d.jpg" alt="Painel de lucro dos primeiros quinze dias do mês" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="34992" data-prefix="R$ ">R$ 34.992</div>
-        <p class="shot-sub">E o mês nem acabou.</p>
+        <div class="shot-lbl">Resultado dos últimos 30 dias | Junho 2026</div>
+        <img src="img/printUTMFY.jpg" alt="Painel da UTMify mostrando lucro de R$ 61 mil nos últimos 30 dias" loading="lazy" decoding="async">
+        <div class="shot-val" data-count="61165" data-prefix="R$ ">R$ 61.165</div>
+        <p class="shot-sub">100% de lucro.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- COMO UMA ONDA MORRE (escuro) -->
-<section class="section dark-after" id="morre">
+<section class="section dark-after death" id="morre">
   <div class="wrap">
     <div class="sec-head">
       <span class="kicker rv">A análise, parte um</span>
-      <h2 class="sec-title rv rv-d1">Como uma onda <span class="accent">morre</span></h2>
+      <h2 class="sec-title rv rv-d1">Como uma onda <span class="accent-red">morre</span></h2>
       <p class="sec-lead rv rv-d2">Antes de te mostrar como cheguei nesse resultado, você precisa entender uma coisa: <b>o mercado é feito de ondas</b>. E toda onda morre por dois fatores. Nunca é aleatório.</p>
     </div>
-    <div class="grid g2">
-      <article class="card rv">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
-        <h3 class="card-title">Leilão saturado</h3>
-        <p class="card-text">Milhares de afiliados brigando pelo mesmo leilão. No Google fundo de funil, só sobrevive quem tem afiliação fechada. O resto sangra num CPC que não para de subir. O custo de aquisição deixa de fechar e a maioria é expulsa do mercado, mesmo com a demanda intacta.</p>
-      </article>
-      <article class="card rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-        <h3 class="card-title">A plataforma muda as regras</h3>
-        <p class="card-text">A plataforma muda as regras e mata o modelo. TikTok Shop nos Estados Unidos virou onda de ban, perda de saldo e violação em massa. YouTube dark travou com Veo3 e conteúdo inautêntico, com desmonetização em peso. A demanda segue viva. O método de aquisição antigo é que morreu.</p>
-      </article>
-    </div>
 
-    <div class="row rv" style="margin-top:34px">
-      <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h20"/><path d="M6 8c1.5 2 3 2 4.5 0S13.5 6 15 8s3 2 4.5 0"/><path d="M6 16c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0"/></svg>
-      <div>
-        <div class="row-title">O tráfego pago virou terreno de tubarão</div>
-        <p class="row-text">Quem gasta milhão por dia dita o preço do leilão. Tem gente escalando Ads que fecha o mês no vermelho, sem margem para erro. Nesse mar sangrento, quem começa de baixo não tem vez.</p>
-      </div>
-    </div>
+    <ol class="death-list">
+      <li class="death-item rv">
+        <span class="death-num" aria-hidden="true">01</span>
+        <div class="death-body">
+          <h3 class="death-title">Leilão saturado</h3>
+          <p class="death-text">Milhares de afiliados brigando pelo mesmo leilão. No Google fundo de funil, só sobrevive quem tem afiliação fechada. O resto <b class="bleed">sangra num CPC</b> que não para de subir. O custo de aquisição deixa de fechar e a maioria é expulsa do mercado, mesmo com a demanda intacta.</p>
+        </div>
+      </li>
+      <li class="death-item rv rv-d1">
+        <span class="death-num" aria-hidden="true">02</span>
+        <div class="death-body">
+          <h3 class="death-title">A plataforma muda as regras</h3>
+          <p class="death-text">A plataforma muda as regras e <b class="bleed">mata o modelo</b>. TikTok Shop nos Estados Unidos virou onda de ban, perda de saldo e violação em massa. YouTube dark travou com Veo3 e conteúdo inautêntico, com desmonetização em peso. A demanda segue viva. O método de aquisição antigo é que morreu.</p>
+        </div>
+      </li>
+    </ol>
+
+    <blockquote class="death-quote rv">
+      <p><b>O tráfego pago virou terreno de tubarão.</b> Quem gasta milhão por dia dita o preço do leilão. Tem gente escalando Ads que <b class="bleed">fecha o mês no vermelho</b>, sem margem para erro. Nesse mar sangrento, quem começa de baixo não tem vez.</p>
+    </blockquote>
   </div>
 </section>
 
@@ -671,7 +713,7 @@ img,video{display:block;max-width:100%}
     <div class="grid g3">
       <article class="card rv">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <h3 class="card-title">Ferramental gravado</h3>
+        <h3 class="card-title">Conteúdo inicial gravado</h3>
         <p class="card-text">O método passo a passo, do fundamento à escala. Você assiste no seu ritmo.</p>
       </article>
       <article class="card rv rv-d1">
@@ -753,7 +795,7 @@ img,video{display:block;max-width:100%}
           <span class="lg-dots"></span><span class="lg-val">R$ 497</span>
         </li>
         <li>
-          <span class="lg-name">VSLs validadas e suporte individual no WhatsApp<small>Ofertas que já rodaram milhões, comigo e com a minha esposa do seu lado</small></span>
+          <span class="lg-name">VSLs validadas e suporte individual no Discord<small>Ofertas que já rodaram milhões, comigo e com a minha esposa do seu lado</small></span>
           <span class="lg-dots"></span><span class="lg-val">R$ 1.497</span>
         </li>
       </ul>
