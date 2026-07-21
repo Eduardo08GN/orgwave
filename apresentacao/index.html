@@ -541,6 +541,11 @@ img,video{display:block;max-width:100%}
   .lightbox,.lightbox img{transition:opacity .2s ease}
   .lightbox img{transform:none}
 }
+
+/* divisória preta e vermelha (oferta -> final), flat e sólida --------------- */
+.blood-rule{position:relative;z-index:7;height:clamp(16px,2.4vh,26px);background:#070607}
+.blood-rule::before{content:"";position:absolute;left:0;right:0;top:50%;height:4px;
+  transform:translateY(-50%);background:#E5484D}
 </style>
 </head>
 <body>
@@ -1025,6 +1030,9 @@ img,video{display:block;max-width:100%}
     <p class="offer-foot rv">Turma de fundadores, fecha quando encher</p>
   </div>
 </section>
+
+<!-- divisória preta e vermelha -->
+<div class="blood-rule" aria-hidden="true"></div>
 
 <!-- FINAL -->
 <section class="finale">
