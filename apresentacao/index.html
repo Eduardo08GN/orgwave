@@ -155,61 +155,47 @@ img,video{display:block;max-width:100%}
   background:var(--aqua);transform:translateX(-50%);animation:cue 1.9s var(--ease) infinite}
 @keyframes cue{0%{opacity:0;transform:translate(-50%,0)}35%{opacity:1}100%{opacity:0;transform:translate(-50%,12px)}}
 
-/* grelhas e cartões --------------------------------------------------------- */
-.grid{display:grid;gap:22px}
-.g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:34px 32px;
-  transition:border-color .3s var(--ease),transform .3s var(--ease)}
-.card:hover{border-color:var(--line-2);transform:translateY(-3px)}
-.light .card{background:var(--light-2);border-color:rgba(10,23,27,.10);
-  box-shadow:0 20px 44px -34px rgba(10,23,27,.4)}
-.light .card:hover{border-color:rgba(10,23,27,.2)}
-
+/* ícone utilitário ---------------------------------------------------------- */
 .ic{width:30px;height:30px;color:var(--aqua);margin-bottom:20px;stroke-width:1.5}
 .light .ic{color:var(--aqua-2)}
-.ic-gold{color:var(--gold)}
-.light .ic-gold{color:var(--gold-deep)}
 
-.card-title{font-family:var(--font-display);font-weight:600;font-size:1.16rem;letter-spacing:-.01em;
-  margin-bottom:10px;color:var(--ink)}
-.light .card-title{color:var(--light-ink)}
-.card-text{color:var(--ink-dim);font-size:.98rem;line-height:1.62}
-.light .card-text{color:var(--light-ink-2)}
-
-/* prova de resultado -------------------------------------------------------- */
-.proof-panel{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,4vw,56px);align-items:center;
-  background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r-lg);
-  padding:clamp(30px,4vw,48px);box-shadow:0 30px 70px -46px rgba(10,23,27,.5)}
-.proof-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold-deep);margin-bottom:14px}
-.proof-big{font-family:var(--font-display);font-weight:700;line-height:.92;letter-spacing:-.03em;
-  font-size:clamp(2.9rem,6.4vw,4.6rem);white-space:nowrap;font-variant-numeric:tabular-nums;
-  background:linear-gradient(118deg,#6E4A0E,#9A6E1B 48%,#C2932F);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.proof-note{margin-top:16px;color:var(--light-ink-2);font-size:1rem;max-width:26ch}
-.chartwrap{position:relative}
-.chart{width:100%;height:clamp(150px,20vw,215px);display:block;overflow:visible}
+/* prova de resultado: gráfico full-bleed como estrela ----------------------- */
+.proof-stage{position:relative;margin-top:10px;min-height:clamp(300px,40vw,460px)}
+/* curva ancorada à direita: some atrás do número em vez de cruzá-lo */
+.proof-chart{position:absolute;top:0;right:0;bottom:0;width:66%;height:100%}
 .pw-line{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.9s var(--ease-expo)}
 .on .pw-line{stroke-dashoffset:0}
 .pw-area{opacity:0;transition:opacity 1s ease .5s}
 .on .pw-area{opacity:1}
-.pw-dot{fill:var(--gold-2);opacity:0;transition:opacity .5s ease 1.3s}
-.on .pw-dot{opacity:1}
+.proof-overlay{position:absolute;inset:0;display:flex;align-items:center}
+/* scrim na cor da seção (bleed de fundo, não caixa): limpa a zona do número */
+.proof-overlay::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--light) 0%,var(--light) 38%,transparent 66%)}
+.proof-overlay .wrap{position:relative;width:100%}
+.proof-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:16px}
+.proof-big{font-family:var(--font-display);font-weight:700;line-height:.9;letter-spacing:-.03em;
+  font-size:clamp(3.2rem,8vw,6rem);white-space:nowrap;font-variant-numeric:tabular-nums;
+  color:var(--gold-deep)}
+.proof-note{margin-top:18px;color:var(--light-ink-2);font-size:1.02rem;max-width:26ch}
 
-.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:26px}
-.shot{background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r);
-  padding:20px;box-shadow:0 20px 44px -34px rgba(10,23,27,.4)}
-.shot-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--light-ink-2);margin-bottom:14px}
-.shot img{width:100%;max-height:300px;object-fit:contain;border-radius:var(--r-sm);
-  background:#0d1117}
-.shot-val{font-family:var(--font-display);font-weight:700;font-size:1.9rem;letter-spacing:-.02em;
-  color:var(--gold-deep);margin-top:16px;font-variant-numeric:tabular-nums}
-.shot-sub{color:var(--light-ink-2);font-size:.92rem;margin-top:2px}
-/* prints de celular: mais altos, para os numeros ficarem legiveis */
-.shots-tall .shot img{max-height:440px}
+/* evidências: prints soltas na mesa, filete entre elas ---------------------- */
+.evidence{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(26px,4.5vw,72px);
+  align-items:start;margin-top:clamp(50px,7vw,90px)}
+.evi{text-align:center}
+.evi-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--light-ink-2);margin-bottom:24px}
+.evi img{max-height:540px;width:auto;max-width:100%;margin:0 auto;border-radius:14px;cursor:zoom-in;
+  transform:rotate(-1.8deg);
+  box-shadow:0 40px 70px -34px rgba(10,23,27,.5);
+  transition:transform .4s var(--ease-expo),box-shadow .4s var(--ease)}
+.evi:last-of-type img{transform:rotate(1.5deg)}
+.evi img:hover{transform:rotate(0) scale(1.03);box-shadow:0 54px 90px -34px rgba(10,23,27,.6)}
+.evi-val{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(2rem,4.2vw,3.1rem);color:var(--gold-deep);margin-top:30px;
+  font-variant-numeric:tabular-nums}
+.evi-sub{color:var(--light-ink-2);font-size:.96rem;margin-top:4px}
+.evi-sep{width:1px;align-self:stretch;background:rgba(10,23,27,.16)}
 
 /* estatísticas em arco ------------------------------------------------------ */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px)}
@@ -230,50 +216,85 @@ img,video{display:block;max-width:100%}
 .stat-src{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.1em;color:var(--ink-mut)}
 .light .stat-src{color:var(--light-ink-2)}
 
-/* linhas de destaque -------------------------------------------------------- */
-.row{display:flex;align-items:flex-start;gap:18px;padding:24px 28px;
-  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:14px;
-  transition:border-color .3s var(--ease)}
-.row:hover{border-color:var(--line-2)}
-.light .row{background:var(--light-2);border-color:rgba(10,23,27,.10);
-  box-shadow:0 18px 40px -34px rgba(10,23,27,.4)}
-.row .ic{margin-bottom:0;flex:none;width:24px;height:24px;margin-top:2px}
-.row-title{font-family:var(--font-display);font-weight:600;font-size:1.06rem;color:var(--ink);margin-bottom:4px}
-.light .row-title{color:var(--light-ink)}
-.row-text{color:var(--ink-dim);font-size:.96rem;line-height:1.6}
-.light .row-text{color:var(--light-ink-2)}
+/* prancha: pauta editorial, filete no lugar de caixa ------------------------ */
+.board{border-top:1px solid rgba(10,23,27,.16)}
+.board-row{display:grid;grid-template-columns:minmax(220px,320px) 1fr;gap:clamp(18px,4vw,72px);
+  align-items:start;padding:clamp(26px,3.6vw,42px) 0;border-bottom:1px solid rgba(10,23,27,.16)}
+.board-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(1.25rem,2.2vw,1.6rem);color:var(--light-ink)}
+.board-text{color:var(--light-ink-2);font-size:1.02rem;line-height:1.64;max-width:56ch}
 
-/* fluxo --------------------------------------------------------------------- */
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
-.fstep{background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r);
-  padding:28px 22px;text-align:center;position:relative;
-  box-shadow:0 18px 40px -34px rgba(10,23,27,.4)}
-.fstep .ic{margin:0 auto 16px;color:var(--aqua-2)}
-.fstep-t{font-family:var(--font-display);font-weight:600;font-size:1.04rem;color:var(--light-ink)}
-.fstep-s{color:var(--light-ink-2);font-size:.86rem;margin-top:4px}
-.fstep::after{content:"";position:absolute;right:-11px;top:50%;width:10px;height:10px;
-  border-top:1.5px solid var(--gold-2);border-right:1.5px solid var(--gold-2);
-  transform:translateY(-50%) rotate(45deg);z-index:2}
-.fstep:last-child::after{display:none}
+/* colisão (nasce): duas forças, um encontro --------------------------------- */
+.collide{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(26px,4vw,64px);align-items:stretch}
+.collide-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(1.4rem,2.6vw,2rem);color:var(--light-ink);margin-bottom:14px}
+.collide-text{color:var(--light-ink-2);font-size:1.02rem;line-height:1.66;max-width:46ch}
+.collide-core{display:flex;flex-direction:column;align-items:center;gap:12px}
+.collide-core::before,.collide-core::after{content:"";flex:1;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(10,23,27,.3))}
+.collide-core::after{background:linear-gradient(180deg,rgba(10,23,27,.3),transparent)}
+.collide-core span{font-family:var(--font-display);font-weight:600;font-size:1.4rem;color:var(--aqua-2);
+  width:52px;height:52px;flex:none;border:1px solid rgba(14,168,147,.5);border-radius:50%;
+  display:flex;align-items:center;justify-content:center}
 
-/* iceberg ------------------------------------------------------------------- */
-.ice{width:min(940px,100%);margin:0 auto}
-.ice-lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--ink-mut);margin-bottom:14px;text-align:center}
-.ice-tip{text-align:center;padding-bottom:8px}
-.ice-item{display:inline-block;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r-sm);padding:15px 26px;font-family:var(--font-display);font-weight:600;
-  font-size:1.02rem;line-height:1.3;color:var(--ink)}
-.ice-top{border-color:var(--line-2)}
-.waterline{position:relative;height:1px;margin:26px 0 22px;
-  background:linear-gradient(90deg,transparent,var(--aqua),transparent);opacity:.75}
-.waterline span{position:absolute;right:0;top:-22px;font-family:var(--font-mono);font-size:.64rem;
-  letter-spacing:.2em;color:var(--aqua)}
-.ice-deep{padding:26px 22px 30px;border-radius:0 0 var(--r) var(--r);
-  background:linear-gradient(180deg,rgba(24,120,140,.09),rgba(10,40,60,.24) 70%,rgba(6,20,34,.34))}
-.ice-deep .ice-lbl{color:var(--aqua)}
-.deep-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.deep-grid .ice-item{font-size:.94rem;padding:13px 20px;background:rgba(16,34,44,.7)}
+/* maré (fluxo): uma linha, quatro momentos ---------------------------------- */
+.tide{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-top:6px}
+.tide::before{content:"";position:absolute;top:19px;left:calc(100%/8);right:calc(100%/8);height:2px;
+  background:linear-gradient(90deg,var(--aqua-2),var(--gold-2))}
+.tide-step{text-align:center;position:relative}
+.tide-node{display:block;width:14px;height:14px;margin:6px auto 20px;border-radius:50%;
+  background:var(--light);border:2.5px solid var(--aqua-2);position:relative;z-index:1}
+.tide-step:last-child .tide-node{border-color:var(--gold-2);background:var(--gold)}
+.tide-t{font-family:var(--font-display);font-weight:600;font-size:1.08rem;color:var(--light-ink)}
+.tide-s{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--light-ink-2);margin-top:6px}
+
+/* tenets: três afirmações divididas por filete ------------------------------ */
+.tenets{display:grid;grid-template-columns:repeat(3,1fr)}
+.tenet{padding:4px clamp(24px,3.4vw,44px);border-left:1px solid rgba(10,23,27,.18)}
+.tenet:first-child{border-left:0;padding-left:0}
+.tenet-t{font-family:var(--font-display);font-weight:600;font-size:1.16rem;letter-spacing:-.01em;
+  color:var(--light-ink);margin-bottom:6px}
+.tenet-s{color:var(--light-ink-2);font-size:.98rem}
+
+/* pilares da mentoria: colunas tipográficas --------------------------------- */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr)}
+.pillar{padding:6px clamp(24px,3.4vw,46px);border-left:1px solid var(--line-2)}
+.pillar:first-child{border-left:0;padding-left:0}
+.pillar-t{font-family:var(--font-display);font-weight:600;font-size:1.22rem;letter-spacing:-.01em;
+  color:var(--ink);margin-bottom:10px}
+.pillar-s{color:var(--ink-dim);font-size:.99rem;line-height:1.62}
+
+/* arsenal: índice editorial, nome grande | descrição ------------------------ */
+.arsenal{list-style:none;border-top:1px solid var(--line)}
+.arsenal-item{display:grid;grid-template-columns:minmax(240px,400px) 1fr;gap:clamp(18px,4vw,80px);
+  align-items:center;padding:clamp(24px,3.4vw,38px) 0;border-bottom:1px solid var(--line)}
+.arsenal-name{font-family:var(--font-display);font-weight:600;letter-spacing:-.015em;line-height:1.1;
+  font-size:clamp(1.35rem,2.6vw,2rem);color:var(--ink);transition:color .3s var(--ease)}
+.arsenal-item:hover .arsenal-name{color:var(--aqua)}
+.arsenal-gold .arsenal-name{color:var(--gold)}
+.arsenal-gold:hover .arsenal-name{color:var(--gold-2)}
+.arsenal-text{color:var(--ink-dim);font-size:.99rem;line-height:1.64;max-width:58ch}
+
+/* iceberg tipográfico: afunda crescendo, sem chip nem painel ---------------- */
+.berg{width:min(880px,100%);margin:0 auto;text-align:center}
+.berg-lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-mut);margin-bottom:18px}
+.berg-tip{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);color:var(--ink)}
+.berg-water{position:relative;height:1px;margin:38px 0 34px;background:rgba(255,255,255,.16)}
+.berg-water span{position:absolute;right:0;top:-24px;font-family:var(--font-mono);font-size:.64rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mut)}
+.berg-lbl-deep{color:var(--aqua);margin-bottom:26px}
+.berg-deep{list-style:none}
+.berg-deep li{font-family:var(--font-display);font-weight:600;letter-spacing:-.015em;
+  line-height:1.18;color:var(--ink)}
+.berg-deep li+li{margin-top:12px}
+.berg-deep li:nth-child(1){font-size:clamp(1.35rem,2.8vw,2rem);opacity:.95}
+.berg-deep li:nth-child(2){font-size:clamp(1.5rem,3.2vw,2.4rem);opacity:.8}
+.berg-deep li:nth-child(3){font-size:clamp(1.7rem,3.8vw,2.9rem);opacity:.64}
+.berg-deep li:nth-child(4){font-size:clamp(1.9rem,4.4vw,3.4rem);opacity:.5}
+.berg-deep li:nth-child(5){font-size:clamp(2.05rem,5vw,3.85rem);opacity:.36}
 
 /* ancoragem (ledger) -------------------------------------------------------- */
 .ledger-box{width:min(760px,100%);margin:0 auto;
@@ -304,13 +325,14 @@ img,video{display:block;max-width:100%}
   font-size:clamp(4rem,12vw,9rem);color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
 .price-alt{margin-top:14px;font-family:var(--font-display);font-weight:600;
   font-size:clamp(1.1rem,2.4vw,1.6rem);color:var(--aqua)}
-.offer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
-  width:min(820px,100%);margin:46px auto 0}
-.offer-card{background:rgba(16,26,34,.72);backdrop-filter:blur(10px);
-  border:1px solid var(--line-2);border-radius:var(--r);padding:30px 26px}
-.offer-card .ic{margin:0 auto 16px}
-.offer-val{font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--gold);letter-spacing:-.01em}
-.offer-sub{color:var(--ink-dim);font-size:.94rem;margin-top:6px}
+.offer-terms{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,4vw,60px);
+  align-items:center;width:min(880px,100%);margin:52px auto 0}
+.offer-term{text-align:center}
+.offer-sep{width:1px;align-self:stretch;min-height:88px;
+  background:linear-gradient(180deg,transparent,rgba(235,198,106,.6),transparent)}
+.offer-val{font-family:var(--font-display);font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);
+  color:var(--gold);letter-spacing:-.01em}
+.offer-sub{color:var(--ink-dim);font-size:.98rem;margin-top:8px}
 .offer-foot{margin-top:34px;font-family:var(--font-mono);font-size:.76rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--ink-mut)}
 
@@ -336,7 +358,7 @@ img,video{display:block;max-width:100%}
 
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
-  .pw-line{stroke-dashoffset:0}.pw-area,.pw-dot{opacity:1}
+  .pw-line{stroke-dashoffset:0}.pw-area{opacity:1}
   .arc-fill{transition:none}
   .hero-cue::after{animation:none}
   html{scroll-behavior:auto}
@@ -344,54 +366,80 @@ img,video{display:block;max-width:100%}
 
 /* responsivo ---------------------------------------------------------------- */
 @media(max-width:960px){
-  .proof-panel{grid-template-columns:1fr;gap:32px}
-  .flow{grid-template-columns:repeat(2,1fr)}
-  .fstep:nth-child(2)::after{display:none}
   .stats{grid-template-columns:1fr;gap:44px}
 }
 @media(max-width:760px){
-  .g2,.g3{grid-template-columns:1fr}
-  .shots{grid-template-columns:1fr}
-  .offer-grid{grid-template-columns:1fr}
-  .flow{grid-template-columns:1fr}
-  .fstep::after{display:none}
+  .evidence{grid-template-columns:1fr;gap:40px}
+  .evi-sep{width:100%;height:1px;align-self:center}
+  .evi img{max-height:none;width:min(340px,86%)}
+  /* no celular a curva vira faixa cheia atrás, com scrim vertical suave */
+  .proof-stage{min-height:0}
+  .proof-chart{width:100%;top:auto;bottom:0;height:62%}
+  .proof-overlay{position:relative;padding:8px 0 clamp(70px,20vw,120px)}
+  .proof-overlay::before{background:linear-gradient(180deg,var(--light) 40%,transparent)}
+  .proof-big{font-size:clamp(2.9rem,13vw,4rem)}
   .nav-date{display:none}
   .light.section,.dark-after{border-radius:32px 32px 0 0}
+
+  /* colisão vira encontro vertical */
+  .collide{grid-template-columns:1fr;gap:26px}
+  .collide-core{flex-direction:row;gap:12px}
+  .collide-core::before,.collide-core::after{width:auto;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(10,23,27,.3))}
+  .collide-core::after{background:linear-gradient(90deg,rgba(10,23,27,.3),transparent)}
+
+  /* pauta e índice empilham título sobre texto */
+  .board-row{grid-template-columns:1fr;gap:8px}
+  .arsenal-item{grid-template-columns:1fr;gap:8px;align-items:start}
+
+  /* maré vira trilho vertical */
+  .tide{grid-template-columns:1fr;gap:30px;padding-top:0}
+  .tide::before{top:8px;bottom:8px;left:6px;right:auto;width:2px;height:auto;
+    background:linear-gradient(180deg,var(--aqua-2),var(--gold-2))}
+  .tide-step{text-align:left;padding-left:34px}
+  .tide-node{position:absolute;left:0;top:3px;margin:0}
+
+  /* colunas com filete viram lista com régua no topo */
+  .tenets,.pillars{grid-template-columns:1fr;gap:22px}
+  .tenet,.pillar{border-left:0;padding:18px 0 0;border-top:1px solid rgba(10,23,27,.18)}
+  .tenet:first-child,.pillar:first-child{border-top:0;padding-top:0}
+  .pillar{border-top-color:var(--line-2)}
+  .pillar:first-child{border-top:0}
+
+  /* oferta empilha com filete horizontal */
+  .offer-terms{grid-template-columns:1fr;gap:26px}
+  .offer-sep{width:100%;height:1px;min-height:0;align-self:center;
+    background:linear-gradient(90deg,transparent,rgba(235,198,106,.6),transparent)}
+
   /* piso de 16px pro texto corrido no celular */
-  .card-text,.row-text,.shot-sub,.lg-name{font-size:1rem}
+  .evi-sub,.lg-name,.board-text,.collide-text,.pillar-s,.arsenal-text,.tenet-s{font-size:1rem}
   .lg-name small{font-size:.92rem}
 }
 
-/* como uma onda MORRE — preto e sangue, sem cards ------------------------- */
-.death{background:#050406;
-  box-shadow:0 -30px 80px -40px rgba(0,0,0,.9), inset 0 2px 0 rgba(229,72,77,.42)}
-.death::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(120% 62% at 12% 0%, rgba(201,26,32,.17), transparent 55%),
-    radial-gradient(90% 72% at 100% 104%, rgba(120,10,14,.24), transparent 60%)}
+/* como uma onda MORRE — preto e sangue, flat e sólido ----------------------- */
+.death{background:#070607;
+  box-shadow:0 -30px 80px -40px rgba(0,0,0,.9), inset 0 3px 0 #C81E24}
 .death > .wrap{position:relative;z-index:1}
 .death .kicker{color:#E5484D}
-.death .accent-red{color:#F0413B;text-shadow:0 0 40px rgba(240,65,59,.35)}
+.death .accent-red{color:#E5484D}
 .death .sec-lead b{color:#fff}
 
 .death-list{list-style:none;margin-top:8px}
 .death-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3.4vw,44px);
   align-items:start;padding:clamp(30px,4vw,46px) 0;
-  border-top:1px solid rgba(240,65,59,.18)}
+  border-top:1px solid #331013}
 .death-item:first-child{border-top:0;padding-top:8px}
 .death-num{font-family:var(--font-display);font-weight:700;line-height:.78;
   font-size:clamp(3.2rem,7.2vw,5.8rem);letter-spacing:-.04em;
-  color:#170305;-webkit-text-stroke:1.4px rgba(240,65,59,.62);
-  font-variant-numeric:tabular-nums}
+  color:#8A151B;font-variant-numeric:tabular-nums}
 .death-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
   font-size:clamp(1.32rem,2.5vw,1.75rem);color:#fff;margin-bottom:12px}
 .death-text{color:#CBBCBD;font-size:1.03rem;line-height:1.66;max-width:62ch}
 .death .bleed{color:#F0413B;font-weight:600}
 
 .death-quote{position:relative;margin-top:clamp(42px,6vw,74px);max-width:920px;
-  padding:clamp(22px,3.4vw,38px) 0 clamp(22px,3.4vw,38px) clamp(26px,3vw,42px);
-  border-left:3px solid #E5484D;
-  background:linear-gradient(90deg,rgba(229,72,77,.12),rgba(229,72,77,0) 58%)}
+  padding:clamp(6px,1vw,10px) 0 clamp(6px,1vw,10px) clamp(26px,3vw,42px);
+  border-left:4px solid #E5484D}
 .death-quote p{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;
   font-size:clamp(1.28rem,2.6vw,1.92rem);line-height:1.34;color:#ECE4E4}
 .death-quote b{color:#fff;font-weight:600}
@@ -470,6 +518,29 @@ img,video{display:block;max-width:100%}
   .pay-sep{height:1px;width:100%;align-self:auto}
   .pay-bonus{flex-direction:column;gap:14px}
 }
+
+/* lightbox: preview estendido das prints ------------------------------------ */
+.lightbox{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  padding:clamp(24px,5vh,56px) clamp(20px,5vw,56px);background:rgba(6,9,12,.9);
+  opacity:0;visibility:hidden;transition:opacity .32s var(--ease),visibility .32s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox figure{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px}
+.lightbox img{max-width:min(520px,90vw);max-height:82vh;width:auto;height:auto;border-radius:16px;
+  box-shadow:0 50px 110px -30px rgba(0,0,0,.8);transform:scale(.94);opacity:0;
+  transition:transform .4s var(--ease-expo),opacity .3s ease}
+.lightbox.open img{transform:scale(1);opacity:1}
+.lightbox figcaption{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-dim)}
+.lightbox-close{position:absolute;top:clamp(16px,3vh,26px);right:clamp(16px,3vw,30px);
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:transparent;border:0;color:var(--ink-dim);cursor:pointer;
+  transition:color .2s var(--ease)}
+.lightbox-close:hover{color:var(--light-2)}
+.lightbox-close svg{width:26px;height:26px;stroke-width:1.8}
+@media (prefers-reduced-motion:reduce){
+  .lightbox,.lightbox img{transition:opacity .2s ease}
+  .lightbox img{transform:none}
+}
 </style>
 </head>
 <body>
@@ -510,42 +581,42 @@ img,video{display:block;max-width:100%}
       <p class="sec-lead rv rv-d2">Sem custo de anúncio comendo a margem, o que entra fica. Tudo <b>100 por cento orgânico</b>, sem investir um real em tráfego pago.</p>
     </div>
 
-    <div class="proof-panel rv">
-      <div>
+  </div>
+
+  <div class="proof-stage rv">
+    <svg class="proof-chart" viewBox="0 0 560 220" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="fillGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#C99A3E" stop-opacity=".26"/>
+          <stop offset="1" stop-color="#C99A3E" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="pw-area" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18 L560,220 L0,220 Z" fill="url(#fillGold)"/>
+      <path class="pw-line" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18" fill="none" stroke="#A9791F" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <div class="proof-overlay">
+      <div class="wrap">
         <div class="proof-tag">Lucro dos últimos 30 dias</div>
         <div class="proof-big" data-count="60000" data-prefix="R$ ">R$ 60.000</div>
         <p class="proof-note">Margem de 95 por cento. O que entra, fica.</p>
       </div>
-      <div class="chartwrap">
-        <svg class="chart" viewBox="0 0 560 220" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="fillGold" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#C99A3E" stop-opacity=".3"/>
-              <stop offset="1" stop-color="#C99A3E" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <line x1="0" y1="185" x2="560" y2="185" stroke="rgba(10,23,27,.10)" stroke-width="1"/>
-          <line x1="0" y1="120" x2="560" y2="120" stroke="rgba(10,23,27,.07)" stroke-width="1"/>
-          <line x1="0" y1="55" x2="560" y2="55" stroke="rgba(10,23,27,.07)" stroke-width="1"/>
-          <path class="pw-area" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18 L560,220 L0,220 Z" fill="url(#fillGold)"/>
-          <path class="pw-line" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18" fill="none" stroke="#A9791F" stroke-width="3.4" stroke-linecap="round"/>
-          <circle class="pw-dot" cx="175" cy="132" r="3.5"/><circle class="pw-dot" cx="355" cy="78" r="3.5"/><circle class="pw-dot" cx="560" cy="18" r="4.5"/>
-        </svg>
-      </div>
     </div>
+  </div>
 
-    <div class="shots">
-      <div class="shot rv">
-        <div class="shot-lbl">Mês passado, junho</div>
+  <div class="wrap">
+    <div class="evidence">
+      <div class="evi rv">
+        <div class="evi-lbl">Mês passado, junho</div>
         <img src="img/print_mes.jpg" alt="Painel de comissões mostrando o fechamento de junho" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="9420" data-prefix="US$ ">US$ 9.420</div>
-        <p class="shot-sub">Cerca de R$ 50 mil, com margem de 95 por cento.</p>
+        <div class="evi-val" data-count="9420" data-prefix="US$ ">US$ 9.420</div>
+        <p class="evi-sub">Cerca de R$ 50 mil, com margem de 95 por cento.</p>
       </div>
-      <div class="shot rv rv-d1">
-        <div class="shot-lbl">Resultado dos últimos 30 dias | Junho 2026</div>
+      <span class="evi-sep" aria-hidden="true"></span>
+      <div class="evi rv rv-d1">
+        <div class="evi-lbl">Resultado dos últimos 30 dias | Junho 2026</div>
         <img src="img/printUTMFY.jpg" alt="Painel da UTMify mostrando lucro de R$ 61 mil nos últimos 30 dias" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="61165" data-prefix="R$ ">R$ 61.165</div>
-        <p class="shot-sub">100% de lucro.</p>
+        <div class="evi-val" data-count="61165" data-prefix="R$ ">R$ 61.165</div>
+        <p class="evi-sub">100% de lucro.</p>
       </div>
     </div>
   </div>
@@ -597,17 +668,16 @@ img,video{display:block;max-width:100%}
       <h2 class="sec-title rv rv-d1">Como uma onda <span class="accent">nasce</span></h2>
       <p class="sec-lead rv rv-d2">É o oposto exato. Ela nasce quando <b>duas coisas se encontram</b>: um mercado com demanda gigante e já validada, e um modelo de aquisição novo que ainda não saturou. Quando os dois batem, quem entra cedo pega a onda limpa.</p>
     </div>
-    <div class="grid g2">
-      <article class="card rv">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        <h3 class="card-title">Mercado validado</h3>
-        <p class="card-text">Não adianta modelo genial em mercado pequeno. Precisa de um oceano de compradores com fome real e recorrência, um mercado que já move bilhões e não vai secar. O nutra nos Estados Unidos é exatamente isso.</p>
-      </article>
-      <article class="card rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3z"/></svg>
-        <h3 class="card-title">Novo modelo de aquisição</h3>
-        <p class="card-text">De nada serve a demanda se você não alcança o comprador sem sangrar no leilão. O modelo novo é uma porta de entrada que ainda não encareceu, com passo a passo validado em vez de tentativa e erro. É o orgânico em vídeo curto.</p>
-      </article>
+    <div class="collide rv">
+      <div class="collide-side">
+        <h3 class="collide-title">Mercado validado</h3>
+        <p class="collide-text">Não adianta modelo genial em mercado pequeno. Precisa de um oceano de compradores com fome real e recorrência, um mercado que já move bilhões e não vai secar. O nutra nos Estados Unidos é exatamente isso.</p>
+      </div>
+      <div class="collide-core" aria-hidden="true"><span>+</span></div>
+      <div class="collide-side">
+        <h3 class="collide-title">Novo modelo de aquisição</h3>
+        <p class="collide-text">De nada serve a demanda se você não alcança o comprador sem sangrar no leilão. O modelo novo é uma porta de entrada que ainda não encareceu, com passo a passo validado em vez de tentativa e erro. É o orgânico em vídeo curto.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -662,25 +732,18 @@ img,video{display:block;max-width:100%}
       <h2 class="sec-title rv rv-d1">A prancha certa</h2>
       <p class="sec-lead rv rv-d2">Aquisição orgânica em <b>vídeo curto</b> nas redes sociais.</p>
     </div>
-    <div class="row rv">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <div>
-        <div class="row-title">O público certo</div>
-        <p class="row-text">A entrega orgânica alcança o comprador americano de 45 anos para cima, quem tem cartão e compra suplemento todo mês.</p>
+    <div class="board">
+      <div class="board-row rv">
+        <h3 class="board-title">O público certo</h3>
+        <p class="board-text">A entrega orgânica alcança o comprador americano de 45 anos para cima, quem tem cartão e compra suplemento todo mês.</p>
       </div>
-    </div>
-    <div class="row rv rv-d1">
-      <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      <div>
-        <div class="row-title">Zero custo de mídia</div>
-        <p class="row-text">Você não paga para aparecer. Sem leilão, sem CPM. Cada venda é margem cheia.</p>
+      <div class="board-row rv rv-d1">
+        <h3 class="board-title">Zero custo de mídia</h3>
+        <p class="board-text">Você não paga para aparecer. Sem leilão, sem CPM. Cada venda é margem cheia.</p>
       </div>
-    </div>
-    <div class="row rv rv-d2">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c1.5 2 3 2 4.5 0S9.5 4 11 6s3 2 4.5 0S18.5 4 20 6"/><path d="M2 12c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/><path d="M2 18c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/></svg>
-      <div>
-        <div class="row-title">Distribuição a favor</div>
-        <p class="row-text">A plataforma ainda entrega orgânico de vídeo curto com força. A onda está subindo, não descendo.</p>
+      <div class="board-row rv rv-d2">
+        <h3 class="board-title">Distribuição a favor</h3>
+        <p class="board-text">A plataforma ainda entrega orgânico de vídeo curto com força. A onda está subindo, não descendo.</p>
       </div>
     </div>
   </div>
@@ -694,22 +757,18 @@ img,video{display:block;max-width:100%}
       <h2 class="sec-title rv rv-d1">Isso é muito maior<br>que <span class="accent">nutra</span></h2>
     </div>
 
-    <div class="ice rv">
-      <div class="ice-tip">
-        <div class="ice-lbl">O que todo mundo vê</div>
-        <div class="ice-item ice-top">Vender nutra VSL no orgânico</div>
-      </div>
-      <div class="waterline"><span>Nível da água</span></div>
-      <div class="ice-deep">
-        <div class="ice-lbl">O que o método de criação de vídeo realmente destrava</div>
-        <div class="deep-grid">
-          <div class="ice-item">Infoproduto com IA</div>
-          <div class="ice-item">Nutra Amazon DTC</div>
-          <div class="ice-item">E-commerce no orgânico</div>
-          <div class="ice-item">Recorrência</div>
-          <div class="ice-item">Qualquer oferta que precise de atenção</div>
-        </div>
-      </div>
+    <div class="berg rv">
+      <div class="berg-lbl">O que todo mundo vê</div>
+      <p class="berg-tip">Vender nutra VSL no orgânico</p>
+      <div class="berg-water" aria-hidden="true"><span>Nível da água</span></div>
+      <div class="berg-lbl berg-lbl-deep">O que o método de criação de vídeo realmente destrava</div>
+      <ul class="berg-deep">
+        <li>Infoproduto com IA</li>
+        <li>Nutra Amazon DTC</li>
+        <li>E-commerce no orgânico</li>
+        <li>Recorrência</li>
+        <li>Qualquer oferta que precise de atenção</li>
+      </ul>
     </div>
 
     <p class="sec-lead rv" style="margin:50px auto 0;text-align:center;max-width:680px"><b>Você não está aprendendo a vender nutra.</b> Está dominando a habilidade de transformar atenção orgânica em venda, e ela abre <span class="accent">todos esses mercados</span>.</p>
@@ -730,45 +789,42 @@ img,video{display:block;max-width:100%}
       <h2 class="sec-title rv rv-d1">Simples assim</h2>
     </div>
 
-    <div class="flow">
-      <div class="fstep rv">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
-        <div class="fstep-t">Cria com IA</div>
-        <div class="fstep-s">Modelo validado</div>
+    <div class="tide rv" role="list">
+      <div class="tide-step" role="listitem">
+        <span class="tide-node" aria-hidden="true"></span>
+        <div class="tide-t">Cria com IA</div>
+        <div class="tide-s">Modelo validado</div>
       </div>
-      <div class="fstep rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg>
-        <div class="fstep-t">Publica</div>
-        <div class="fstep-s">No orgânico</div>
+      <div class="tide-step" role="listitem">
+        <span class="tide-node" aria-hidden="true"></span>
+        <div class="tide-t">Publica</div>
+        <div class="tide-s">No orgânico</div>
       </div>
-      <div class="fstep rv rv-d2">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-        <div class="fstep-t">Gringo compra</div>
-        <div class="fstep-s">Oferta validada</div>
+      <div class="tide-step" role="listitem">
+        <span class="tide-node" aria-hidden="true"></span>
+        <div class="tide-t">Gringo compra</div>
+        <div class="tide-s">Oferta validada</div>
       </div>
-      <div class="fstep rv rv-d3">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-        <div class="fstep-t">Você recebe</div>
-        <div class="fstep-s">Em dólar</div>
+      <div class="tide-step" role="listitem">
+        <span class="tide-node" aria-hidden="true"></span>
+        <div class="tide-t">Você recebe</div>
+        <div class="tide-s">Em dólar</div>
       </div>
     </div>
 
-    <div class="grid g3" style="margin-top:44px">
-      <article class="card rv">
-        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        <h3 class="card-title">Cem por cento lucro</h3>
-        <p class="card-text">Zero gasto em anúncio.</p>
-      </article>
-      <article class="card rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/><path d="M2 18c1.5 2 3 2 4.5 0s3-2 4.5 0 3 2 4.5 0 3-2 4.5 0"/><path d="M2 6c1.5 2 3 2 4.5 0S9.5 4 11 6s3 2 4.5 0S18.5 4 20 6"/></svg>
-        <h3 class="card-title">Sem leilão</h3>
-        <p class="card-text">Você não briga com tubarão.</p>
-      </article>
-      <article class="card rv rv-d2">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-        <h3 class="card-title">Risco zero de mídia</h3>
-        <p class="card-text">Não tem saldo para queimar.</p>
-      </article>
+    <div class="tenets rv" style="margin-top:70px">
+      <div class="tenet">
+        <h3 class="tenet-t">Cem por cento lucro</h3>
+        <p class="tenet-s">Zero gasto em anúncio.</p>
+      </div>
+      <div class="tenet">
+        <h3 class="tenet-t">Sem leilão</h3>
+        <p class="tenet-s">Você não briga com tubarão.</p>
+      </div>
+      <div class="tenet">
+        <h3 class="tenet-t">Risco zero de mídia</h3>
+        <p class="tenet-s">Não tem saldo para queimar.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -780,22 +836,19 @@ img,video{display:block;max-width:100%}
       <span class="kicker rv">Tudo incluído</span>
       <h2 class="sec-title rv rv-d1">Mentoria <span class="accent">Organic Wave</span></h2>
     </div>
-    <div class="grid g3">
-      <article class="card rv">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        <h3 class="card-title">Conteúdo inicial gravado</h3>
-        <p class="card-text">O método passo a passo, do fundamento à escala. Você assiste no seu ritmo.</p>
-      </article>
-      <article class="card rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/></svg>
-        <h3 class="card-title">Execução ao vivo</h3>
-        <p class="card-text">O passo a passo completo sendo executado comigo. Tudo ao vivo e na prática, não é aula gravada.</p>
-      </article>
-      <article class="card rv rv-d2">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
-        <h3 class="card-title">Suporte direto</h3>
-        <p class="card-text">Grupo e WhatsApp individual comigo e com a minha esposa.</p>
-      </article>
+    <div class="pillars rv">
+      <div class="pillar">
+        <h3 class="pillar-t">Conteúdo inicial gravado</h3>
+        <p class="pillar-s">O método passo a passo, do fundamento à escala. Você assiste no seu ritmo.</p>
+      </div>
+      <div class="pillar">
+        <h3 class="pillar-t">Execução ao vivo</h3>
+        <p class="pillar-s">O passo a passo completo sendo executado comigo. Tudo ao vivo e na prática, não é aula gravada.</p>
+      </div>
+      <div class="pillar">
+        <h3 class="pillar-t">Suporte direto</h3>
+        <p class="pillar-s">Grupo e WhatsApp individual comigo e com a minha esposa.</p>
+      </div>
     </div>
 
     <div class="live-strip rv">
@@ -808,38 +861,32 @@ img,video{display:block;max-width:100%}
       <h2 class="sec-title rv rv-d1">O <span class="accent-gold">arsenal</span></h2>
       <p class="sec-lead rv rv-d2">A tecnologia da minha operação, na sua mão. <b>O que nenhum concorrente entrega.</b></p>
     </div>
-    <div class="grid g3">
-      <article class="card rv">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-        <h3 class="card-title">Agente de copy</h3>
-        <p class="card-text">Você joga a ideia e ele devolve a copy pronta e validada, no padrão que já converte no mercado americano. Sem travar em página em branco.</p>
-      </article>
-      <article class="card rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
-        <h3 class="card-title">Agente de animação</h3>
-        <p class="card-text">Pega a copy do primeiro agente e transforma em vídeo pronto para postar. Da ideia ao criativo final sem abrir editor nem gravar nada.</p>
-      </article>
-      <article class="card rv rv-d2">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <h3 class="card-title">Agente de decupagem</h3>
-        <p class="card-text">Aponta para qualquer criativo que já está bombando e ele devolve a estrutura por trás: hook, ângulo, ritmo. Você para de adivinhar e passa a modelar o que vence.</p>
-      </article>
-      <article class="card rv">
-        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
-        <h3 class="card-title">Swipe file com mais de 30 perfis</h3>
-        <p class="card-text">O mapa dos perfis que mais faturam no nicho, atualizado toda vez que eu garimpo um novo. Você começa modelando quem já escalou.</p>
-      </article>
-      <article class="card rv rv-d1">
-        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.3 12.6C8.7 9.2 5.9 6.6 2.4 4.8c.4 4.4 2.4 7.6 5.9 9.6z"/><path d="M12.7 12.6c2.6-3.4 5.4-6 8.9-7.8-.4 4.4-2.4 7.6-5.9 9.6z"/><path d="M12 12.8V9"/><path d="M12 9c-1.3-1.6-1.1-3.6.6-5.4.5 2.2.2 3.9-.6 5.4z"/><path d="M12 12.8c-2.2 3-2.8 5.6-1.8 8 .2-1.5.7-2.6 1.5-3.3-.1 1.5.3 2.6 1.1 3.3.1-1.2.5-2.1 1.1-2.8.5-2-.2-3.7-1.9-5.2z"/></svg>
-        <h3 class="card-title">VSLs validadas</h3>
-        <p class="card-text">Parceria com a Fênix, a maior empresa de VSLs para afiliação do mercado. Você não cria oferta e nem testa VSL, recebe tudo validado, ofertas que já venderam milhões de dólares.</p>
-      </article>
-      <article class="card rv rv-d2">
-        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
-        <h3 class="card-title">Você só pluga</h3>
-        <p class="card-text">Todo o sistema já montado. Sua única função é conectar a presell na estrutura e ligar a máquina. O resto do arsenal faz o trabalho pesado.</p>
-      </article>
-    </div>
+    <ul class="arsenal">
+      <li class="arsenal-item rv">
+        <h3 class="arsenal-name">Agente de copy</h3>
+        <p class="arsenal-text">Você joga a ideia e ele devolve a copy pronta e validada, no padrão que já converte no mercado americano. Sem travar em página em branco.</p>
+      </li>
+      <li class="arsenal-item rv">
+        <h3 class="arsenal-name">Agente de animação</h3>
+        <p class="arsenal-text">Pega a copy do primeiro agente e transforma em vídeo pronto para postar. Da ideia ao criativo final sem abrir editor nem gravar nada.</p>
+      </li>
+      <li class="arsenal-item rv">
+        <h3 class="arsenal-name">Agente de decupagem</h3>
+        <p class="arsenal-text">Aponta para qualquer criativo que já está bombando e ele devolve a estrutura por trás: hook, ângulo, ritmo. Você para de adivinhar e passa a modelar o que vence.</p>
+      </li>
+      <li class="arsenal-item arsenal-gold rv">
+        <h3 class="arsenal-name">Swipe file com mais de 30 perfis</h3>
+        <p class="arsenal-text">O mapa dos perfis que mais faturam no nicho, atualizado toda vez que eu garimpo um novo. Você começa modelando quem já escalou.</p>
+      </li>
+      <li class="arsenal-item arsenal-gold rv">
+        <h3 class="arsenal-name">VSLs validadas</h3>
+        <p class="arsenal-text">Parceria com a Fênix, a maior empresa de VSLs para afiliação do mercado. Você não cria oferta e nem testa VSL, recebe tudo validado, ofertas que já venderam milhões de dólares.</p>
+      </li>
+      <li class="arsenal-item arsenal-gold rv">
+        <h3 class="arsenal-name">Você só pluga</h3>
+        <p class="arsenal-text">Todo o sistema já montado. Sua única função é conectar a presell na estrutura e ligar a máquina. O resto do arsenal faz o trabalho pesado.</p>
+      </li>
+    </ul>
   </div>
 </section>
 
@@ -936,18 +983,19 @@ img,video{display:block;max-width:100%}
       <p class="sec-lead rv rv-d2">Print que chegou no meu WhatsApp, de gente que só aplicou o passo a passo.</p>
     </div>
 
-    <div class="shots shots-tall">
-      <div class="shot rv">
-        <div class="shot-lbl">Quinze dias de junho</div>
+    <div class="evidence">
+      <div class="evi rv">
+        <div class="evi-lbl">Quinze dias de junho</div>
         <img src="img/mentorado_24k.jpg" alt="Print de conversa com painel mostrando R$ 24.295 de lucro em quinze dias" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="24295" data-prefix="R$ ">R$ 24.295</div>
-        <p class="shot-sub">De lucro em quinze dias, no mês passado.</p>
+        <div class="evi-val" data-count="24295" data-prefix="R$ ">R$ 24.295</div>
+        <p class="evi-sub">De lucro em quinze dias, no mês passado.</p>
       </div>
-      <div class="shot rv rv-d1">
-        <div class="shot-lbl">Menos de uma semana aplicando</div>
+      <span class="evi-sep" aria-hidden="true"></span>
+      <div class="evi rv rv-d1">
+        <div class="evi-lbl">Menos de uma semana aplicando</div>
         <img src="img/mentorado_1kdol.jpg" alt="Print de conversa comemorando os primeiros mil dólares do mentorado" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="1000" data-prefix="US$ ">US$ 1.000</div>
-        <p class="shot-sub">Cerca de R$ 5 mil, com a esposa acidentada e postando pouco vídeo.</p>
+        <div class="evi-val" data-count="1000" data-prefix="US$ ">US$ 1.000</div>
+        <p class="evi-sub">Cerca de R$ 5 mil, com a esposa acidentada e postando pouco vídeo.</p>
       </div>
     </div>
   </div>
@@ -962,14 +1010,13 @@ img,video{display:block;max-width:100%}
     <div class="price rv rv-d1">R$ 3.997</div>
     <div class="price-alt rv rv-d2">ou 12x de R$ 397</div>
 
-    <div class="offer-grid">
-      <div class="offer-card rv">
-        <svg class="ic ic-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 1-2-2 2 2 0 0 1 2-2h13"/><path d="M17 13h.01"/></svg>
+    <div class="offer-terms">
+      <div class="offer-term rv">
         <div class="offer-val">R$ 2.000 no Pix</div>
         <p class="offer-sub">De volta para o primeiro comprador.</p>
       </div>
-      <div class="offer-card rv rv-d1">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+      <span class="offer-sep" aria-hidden="true"></span>
+      <div class="offer-term rv rv-d1">
         <div class="offer-val">Editor automático</div>
         <p class="offer-sub">Grátis para os 10 primeiros. Do 11º em diante, R$ 497.</p>
       </div>
@@ -991,6 +1038,16 @@ img,video{display:block;max-width:100%}
 </section>
 
 </main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Preview ampliada da prova">
+  <button class="lightbox-close" type="button" aria-label="Fechar preview">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <figure>
+    <img alt="" decoding="async">
+    <figcaption></figcaption>
+  </figure>
+</div>
 
 <script>
 (function(){
@@ -1060,8 +1117,38 @@ img,video{display:block;max-width:100%}
   }, { threshold:.2, rootMargin:"0px 0px -8% 0px" });
 
   document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
-  document.querySelectorAll(".proof-panel").forEach(function(el){ io.observe(el); });
   document.querySelectorAll(".ledger-box").forEach(function(el){ io.observe(el); });
+
+  /* lightbox: hover (ou toque) na print abre preview estendida */
+  var lb = document.getElementById("lightbox");
+  if (lb) {
+    var lbImg = lb.querySelector("img");
+    var lbCap = lb.querySelector("figcaption");
+    var lastFocus = null;
+    function openLb(src, cap){
+      lbImg.setAttribute("src", src);
+      lbCap.textContent = cap || "";
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+    }
+    function closeLb(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+    }
+    document.querySelectorAll(".evi").forEach(function(evi){
+      var img = evi.querySelector("img");
+      var cap = (evi.querySelector(".evi-lbl") || {}).textContent || img.getAttribute("alt");
+      if (!img) return;
+      var full = img.getAttribute("src");
+      img.addEventListener("mouseenter", function(){ lastFocus = img; openLb(full, cap); });
+      img.addEventListener("click", function(){ lastFocus = img; openLb(full, cap); });
+    });
+    lb.addEventListener("click", closeLb);
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape" && lb.classList.contains("open")) closeLb();
+    });
+  }
 })();
 </script>
 </body>
