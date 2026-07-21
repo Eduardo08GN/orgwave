@@ -1149,7 +1149,6 @@ img,video{display:block;max-width:100%}
       var cap = (evi.querySelector(".evi-lbl") || {}).textContent || img.getAttribute("alt");
       if (!img) return;
       var full = img.getAttribute("src");
-      img.addEventListener("mouseenter", function(){ lastFocus = img; openLb(full, cap); });
       img.addEventListener("click", function(){ lastFocus = img; openLb(full, cap); });
     });
     lb.addEventListener("click", closeLb);
