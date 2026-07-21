@@ -542,10 +542,11 @@ img,video{display:block;max-width:100%}
   .lightbox img{transform:none}
 }
 
-/* divisória preta e vermelha (oferta -> final), flat e sólida --------------- */
-.blood-rule{position:relative;z-index:7;height:clamp(16px,2.4vh,26px);background:#070607}
-.blood-rule::before{content:"";position:absolute;left:0;right:0;top:50%;height:4px;
-  transform:translateY(-50%);background:#E5484D}
+/* divisória em onda (oferta -> final), só a linha vermelha ------------------- */
+.blood-rule{position:relative;z-index:7;line-height:0;background:transparent}
+.blood-rule svg{display:block;width:100%;height:clamp(38px,5.5vw,68px)}
+.blood-wave{fill:none;stroke:#E5484D;stroke-width:3;stroke-linecap:round;
+  vector-effect:non-scaling-stroke}
 </style>
 </head>
 <body>
@@ -1031,8 +1032,12 @@ img,video{display:block;max-width:100%}
   </div>
 </section>
 
-<!-- divisória preta e vermelha -->
-<div class="blood-rule" aria-hidden="true"></div>
+<!-- divisória em onda, só a linha vermelha -->
+<div class="blood-rule" aria-hidden="true">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path class="blood-wave" d="M0,54 C240,12 480,12 720,42 C960,72 1200,72 1440,30" fill="none"/>
+  </svg>
+</div>
 
 <!-- FINAL -->
 <section class="finale">
