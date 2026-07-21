@@ -160,18 +160,22 @@ img,video{display:block;max-width:100%}
 .light .ic{color:var(--aqua-2)}
 
 /* prova de resultado: gráfico full-bleed como estrela ----------------------- */
-.proof-stage{position:relative;margin-top:10px}
-.proof-chart{display:block;width:100%;height:clamp(280px,38vw,440px)}
+.proof-stage{position:relative;margin-top:10px;min-height:clamp(300px,40vw,460px)}
+/* curva ancorada à direita: some atrás do número em vez de cruzá-lo */
+.proof-chart{position:absolute;top:0;right:0;bottom:0;width:66%;height:100%}
 .pw-line{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.9s var(--ease-expo)}
 .on .pw-line{stroke-dashoffset:0}
 .pw-area{opacity:0;transition:opacity 1s ease .5s}
 .on .pw-area{opacity:1}
 .proof-overlay{position:absolute;inset:0;display:flex;align-items:center}
-.proof-overlay .wrap{width:100%}
+/* scrim na cor da seção (bleed de fundo, não caixa): limpa a zona do número */
+.proof-overlay::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--light) 0%,var(--light) 38%,transparent 66%)}
+.proof-overlay .wrap{position:relative;width:100%}
 .proof-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--gold-deep);margin-bottom:16px}
 .proof-big{font-family:var(--font-display);font-weight:700;line-height:.9;letter-spacing:-.03em;
-  font-size:clamp(3.4rem,9vw,7rem);white-space:nowrap;font-variant-numeric:tabular-nums;
+  font-size:clamp(3.2rem,8vw,6rem);white-space:nowrap;font-variant-numeric:tabular-nums;
   color:var(--gold-deep)}
 .proof-note{margin-top:18px;color:var(--light-ink-2);font-size:1.02rem;max-width:26ch}
 
@@ -181,10 +185,12 @@ img,video{display:block;max-width:100%}
 .evi{text-align:center}
 .evi-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--light-ink-2);margin-bottom:24px}
-.evi img{max-height:380px;width:auto;max-width:100%;margin:0 auto;border-radius:14px;
+.evi img{max-height:540px;width:auto;max-width:100%;margin:0 auto;border-radius:14px;cursor:zoom-in;
   transform:rotate(-1.8deg);
-  box-shadow:0 40px 70px -34px rgba(10,23,27,.5)}
+  box-shadow:0 40px 70px -34px rgba(10,23,27,.5);
+  transition:transform .4s var(--ease-expo),box-shadow .4s var(--ease)}
 .evi:last-of-type img{transform:rotate(1.5deg)}
+.evi img:hover{transform:rotate(0) scale(1.03);box-shadow:0 54px 90px -34px rgba(10,23,27,.6)}
 .evi-val{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;
   font-size:clamp(2rem,4.2vw,3.1rem);color:var(--gold-deep);margin-top:30px;
   font-variant-numeric:tabular-nums}
@@ -365,8 +371,12 @@ img,video{display:block;max-width:100%}
 @media(max-width:760px){
   .evidence{grid-template-columns:1fr;gap:40px}
   .evi-sep{width:100%;height:1px;align-self:center}
-  .evi img{max-height:320px}
-  .proof-chart{height:240px}
+  .evi img{max-height:none;width:min(340px,86%)}
+  /* no celular a curva vira faixa cheia atrás, com scrim vertical suave */
+  .proof-stage{min-height:0}
+  .proof-chart{width:100%;top:auto;bottom:0;height:62%}
+  .proof-overlay{position:relative;padding:8px 0 clamp(70px,20vw,120px)}
+  .proof-overlay::before{background:linear-gradient(180deg,var(--light) 40%,transparent)}
   .proof-big{font-size:clamp(2.9rem,13vw,4rem)}
   .nav-date{display:none}
   .light.section,.dark-after{border-radius:32px 32px 0 0}
@@ -451,6 +461,29 @@ img,video{display:block;max-width:100%}
   font-size:clamp(1.04rem,1.9vw,1.3rem);line-height:1.3;color:#04231F}
 .live-strip b{font-weight:700}
 .live-strip .live-plus{font-weight:700;opacity:.55;padding:0 5px}
+
+/* lightbox: preview estendido das prints ------------------------------------ */
+.lightbox{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  padding:clamp(24px,5vh,56px) clamp(20px,5vw,56px);background:rgba(6,9,12,.9);
+  opacity:0;visibility:hidden;transition:opacity .32s var(--ease),visibility .32s}
+.lightbox.open{opacity:1;visibility:visible}
+.lightbox figure{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px}
+.lightbox img{max-width:min(520px,90vw);max-height:82vh;width:auto;height:auto;border-radius:16px;
+  box-shadow:0 50px 110px -30px rgba(0,0,0,.8);transform:scale(.94);opacity:0;
+  transition:transform .4s var(--ease-expo),opacity .3s ease}
+.lightbox.open img{transform:scale(1);opacity:1}
+.lightbox figcaption{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-dim)}
+.lightbox-close{position:absolute;top:clamp(16px,3vh,26px);right:clamp(16px,3vw,30px);
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  background:transparent;border:0;color:var(--ink-dim);cursor:pointer;
+  transition:color .2s var(--ease)}
+.lightbox-close:hover{color:var(--light-2)}
+.lightbox-close svg{width:26px;height:26px;stroke-width:1.8}
+@media (prefers-reduced-motion:reduce){
+  .lightbox,.lightbox img{transition:opacity .2s ease}
+  .lightbox img{transform:none}
+}
 </style>
 </head>
 <body>
@@ -879,6 +912,16 @@ img,video{display:block;max-width:100%}
 
 </main>
 
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Preview ampliada da prova">
+  <button class="lightbox-close" type="button" aria-label="Fechar preview">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+  </button>
+  <figure>
+    <img alt="" decoding="async">
+    <figcaption></figcaption>
+  </figure>
+</div>
+
 <script>
 (function(){
   "use strict";
@@ -948,6 +991,37 @@ img,video{display:block;max-width:100%}
 
   document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
   document.querySelectorAll(".ledger-box").forEach(function(el){ io.observe(el); });
+
+  /* lightbox: hover (ou toque) na print abre preview estendida */
+  var lb = document.getElementById("lightbox");
+  if (lb) {
+    var lbImg = lb.querySelector("img");
+    var lbCap = lb.querySelector("figcaption");
+    var lastFocus = null;
+    function openLb(src, cap){
+      lbImg.setAttribute("src", src);
+      lbCap.textContent = cap || "";
+      lb.classList.add("open");
+      lb.setAttribute("aria-hidden", "false");
+    }
+    function closeLb(){
+      lb.classList.remove("open");
+      lb.setAttribute("aria-hidden", "true");
+      if (lastFocus) { lastFocus.focus(); lastFocus = null; }
+    }
+    document.querySelectorAll(".evi").forEach(function(evi){
+      var img = evi.querySelector("img");
+      var cap = (evi.querySelector(".evi-lbl") || {}).textContent || img.getAttribute("alt");
+      if (!img) return;
+      var full = img.getAttribute("src");
+      img.addEventListener("mouseenter", function(){ lastFocus = img; openLb(full, cap); });
+      img.addEventListener("click", function(){ lastFocus = img; openLb(full, cap); });
+    });
+    lb.addEventListener("click", closeLb);
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape" && lb.classList.contains("open")) closeLb();
+    });
+  }
 })();
 </script>
 </body>
