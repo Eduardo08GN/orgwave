@@ -159,36 +159,37 @@ img,video{display:block;max-width:100%}
 .ic{width:30px;height:30px;color:var(--aqua);margin-bottom:20px;stroke-width:1.5}
 .light .ic{color:var(--aqua-2)}
 
-/* prova de resultado -------------------------------------------------------- */
-.proof-panel{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,4vw,56px);align-items:center;
-  background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r-lg);
-  padding:clamp(30px,4vw,48px);box-shadow:0 30px 70px -46px rgba(10,23,27,.5)}
-.proof-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold-deep);margin-bottom:14px}
-.proof-big{font-family:var(--font-display);font-weight:700;line-height:.92;letter-spacing:-.03em;
-  font-size:clamp(2.9rem,6.4vw,4.6rem);white-space:nowrap;font-variant-numeric:tabular-nums;
-  background:linear-gradient(118deg,#6E4A0E,#9A6E1B 48%,#C2932F);
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.proof-note{margin-top:16px;color:var(--light-ink-2);font-size:1rem;max-width:26ch}
-.chartwrap{position:relative}
-.chart{width:100%;height:clamp(150px,20vw,215px);display:block;overflow:visible}
+/* prova de resultado: gráfico full-bleed como estrela ----------------------- */
+.proof-stage{position:relative;margin-top:10px}
+.proof-chart{display:block;width:100%;height:clamp(280px,38vw,440px)}
 .pw-line{stroke-dasharray:1400;stroke-dashoffset:1400;transition:stroke-dashoffset 1.9s var(--ease-expo)}
 .on .pw-line{stroke-dashoffset:0}
 .pw-area{opacity:0;transition:opacity 1s ease .5s}
 .on .pw-area{opacity:1}
-.pw-dot{fill:var(--gold-2);opacity:0;transition:opacity .5s ease 1.3s}
-.on .pw-dot{opacity:1}
+.proof-overlay{position:absolute;inset:0;display:flex;align-items:center}
+.proof-overlay .wrap{width:100%}
+.proof-tag{font-family:var(--font-mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:16px}
+.proof-big{font-family:var(--font-display);font-weight:700;line-height:.9;letter-spacing:-.03em;
+  font-size:clamp(3.4rem,9vw,7rem);white-space:nowrap;font-variant-numeric:tabular-nums;
+  color:var(--gold-deep)}
+.proof-note{margin-top:18px;color:var(--light-ink-2);font-size:1.02rem;max-width:26ch}
 
-.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:26px}
-.shot{background:var(--light-2);border:1px solid rgba(10,23,27,.10);border-radius:var(--r);
-  padding:20px;box-shadow:0 20px 44px -34px rgba(10,23,27,.4)}
-.shot-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--light-ink-2);margin-bottom:14px}
-.shot img{width:100%;max-height:300px;object-fit:contain;border-radius:var(--r-sm);
-  background:#0d1117}
-.shot-val{font-family:var(--font-display);font-weight:700;font-size:1.9rem;letter-spacing:-.02em;
-  color:var(--gold-deep);margin-top:16px;font-variant-numeric:tabular-nums}
-.shot-sub{color:var(--light-ink-2);font-size:.92rem;margin-top:2px}
+/* evidências: prints soltas na mesa, filete entre elas ---------------------- */
+.evidence{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(26px,4.5vw,72px);
+  align-items:start;margin-top:clamp(50px,7vw,90px)}
+.evi{text-align:center}
+.evi-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--light-ink-2);margin-bottom:24px}
+.evi img{max-height:380px;width:auto;max-width:100%;margin:0 auto;border-radius:14px;
+  transform:rotate(-1.8deg);
+  box-shadow:0 40px 70px -34px rgba(10,23,27,.5)}
+.evi:last-of-type img{transform:rotate(1.5deg)}
+.evi-val{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(2rem,4.2vw,3.1rem);color:var(--gold-deep);margin-top:30px;
+  font-variant-numeric:tabular-nums}
+.evi-sub{color:var(--light-ink-2);font-size:.96rem;margin-top:4px}
+.evi-sep{width:1px;align-self:stretch;background:rgba(10,23,27,.16)}
 
 /* estatísticas em arco ------------------------------------------------------ */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px)}
@@ -269,24 +270,25 @@ img,video{display:block;max-width:100%}
 .arsenal-gold:hover .arsenal-name{color:var(--gold-2)}
 .arsenal-text{color:var(--ink-dim);font-size:.99rem;line-height:1.64;max-width:58ch}
 
-/* iceberg ------------------------------------------------------------------- */
-.ice{width:min(940px,100%);margin:0 auto}
-.ice-lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--ink-mut);margin-bottom:14px;text-align:center}
-.ice-tip{text-align:center;padding-bottom:8px}
-.ice-item{display:inline-block;background:var(--surface);border:1px solid var(--line);
-  border-radius:var(--r-sm);padding:15px 26px;font-family:var(--font-display);font-weight:600;
-  font-size:1.02rem;line-height:1.3;color:var(--ink)}
-.ice-top{border-color:var(--line-2)}
-.waterline{position:relative;height:1px;margin:26px 0 22px;
-  background:linear-gradient(90deg,transparent,var(--aqua),transparent);opacity:.75}
-.waterline span{position:absolute;right:0;top:-22px;font-family:var(--font-mono);font-size:.64rem;
-  letter-spacing:.2em;color:var(--aqua)}
-.ice-deep{padding:26px 22px 30px;border-radius:0 0 var(--r) var(--r);
-  background:linear-gradient(180deg,rgba(24,120,140,.09),rgba(10,40,60,.24) 70%,rgba(6,20,34,.34))}
-.ice-deep .ice-lbl{color:var(--aqua)}
-.deep-grid{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.deep-grid .ice-item{font-size:.94rem;padding:13px 20px;background:rgba(16,34,44,.7)}
+/* iceberg tipográfico: afunda crescendo, sem chip nem painel ---------------- */
+.berg{width:min(880px,100%);margin:0 auto;text-align:center}
+.berg-lbl{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ink-mut);margin-bottom:18px}
+.berg-tip{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);color:var(--ink)}
+.berg-water{position:relative;height:1px;margin:38px 0 34px;background:rgba(255,255,255,.16)}
+.berg-water span{position:absolute;right:0;top:-24px;font-family:var(--font-mono);font-size:.64rem;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-mut)}
+.berg-lbl-deep{color:var(--aqua);margin-bottom:26px}
+.berg-deep{list-style:none}
+.berg-deep li{font-family:var(--font-display);font-weight:600;letter-spacing:-.015em;
+  line-height:1.18;color:var(--ink)}
+.berg-deep li+li{margin-top:12px}
+.berg-deep li:nth-child(1){font-size:clamp(1.35rem,2.8vw,2rem);opacity:.95}
+.berg-deep li:nth-child(2){font-size:clamp(1.5rem,3.2vw,2.4rem);opacity:.8}
+.berg-deep li:nth-child(3){font-size:clamp(1.7rem,3.8vw,2.9rem);opacity:.64}
+.berg-deep li:nth-child(4){font-size:clamp(1.9rem,4.4vw,3.4rem);opacity:.5}
+.berg-deep li:nth-child(5){font-size:clamp(2.05rem,5vw,3.85rem);opacity:.36}
 
 /* ancoragem (ledger) -------------------------------------------------------- */
 .ledger-box{width:min(760px,100%);margin:0 auto;
@@ -350,7 +352,7 @@ img,video{display:block;max-width:100%}
 
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1;transform:none;transition:none}
-  .pw-line{stroke-dashoffset:0}.pw-area,.pw-dot{opacity:1}
+  .pw-line{stroke-dashoffset:0}.pw-area{opacity:1}
   .arc-fill{transition:none}
   .hero-cue::after{animation:none}
   html{scroll-behavior:auto}
@@ -358,11 +360,14 @@ img,video{display:block;max-width:100%}
 
 /* responsivo ---------------------------------------------------------------- */
 @media(max-width:960px){
-  .proof-panel{grid-template-columns:1fr;gap:32px}
   .stats{grid-template-columns:1fr;gap:44px}
 }
 @media(max-width:760px){
-  .shots{grid-template-columns:1fr}
+  .evidence{grid-template-columns:1fr;gap:40px}
+  .evi-sep{width:100%;height:1px;align-self:center}
+  .evi img{max-height:320px}
+  .proof-chart{height:240px}
+  .proof-big{font-size:clamp(2.9rem,13vw,4rem)}
   .nav-date{display:none}
   .light.section,.dark-after{border-radius:32px 32px 0 0}
 
@@ -397,40 +402,34 @@ img,video{display:block;max-width:100%}
     background:linear-gradient(90deg,transparent,rgba(235,198,106,.6),transparent)}
 
   /* piso de 16px pro texto corrido no celular */
-  .shot-sub,.lg-name,.board-text,.collide-text,.pillar-s,.arsenal-text,.tenet-s{font-size:1rem}
+  .evi-sub,.lg-name,.board-text,.collide-text,.pillar-s,.arsenal-text,.tenet-s{font-size:1rem}
   .lg-name small{font-size:.92rem}
 }
 
-/* como uma onda MORRE — preto e sangue, sem cards ------------------------- */
-.death{background:#050406;
-  box-shadow:0 -30px 80px -40px rgba(0,0,0,.9), inset 0 2px 0 rgba(229,72,77,.42)}
-.death::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(120% 62% at 12% 0%, rgba(201,26,32,.17), transparent 55%),
-    radial-gradient(90% 72% at 100% 104%, rgba(120,10,14,.24), transparent 60%)}
+/* como uma onda MORRE — preto e sangue, flat e sólido ----------------------- */
+.death{background:#070607;
+  box-shadow:0 -30px 80px -40px rgba(0,0,0,.9), inset 0 3px 0 #C81E24}
 .death > .wrap{position:relative;z-index:1}
 .death .kicker{color:#E5484D}
-.death .accent-red{color:#F0413B;text-shadow:0 0 40px rgba(240,65,59,.35)}
+.death .accent-red{color:#E5484D}
 .death .sec-lead b{color:#fff}
 
 .death-list{list-style:none;margin-top:8px}
 .death-item{display:grid;grid-template-columns:auto 1fr;gap:clamp(20px,3.4vw,44px);
   align-items:start;padding:clamp(30px,4vw,46px) 0;
-  border-top:1px solid rgba(240,65,59,.18)}
+  border-top:1px solid #331013}
 .death-item:first-child{border-top:0;padding-top:8px}
 .death-num{font-family:var(--font-display);font-weight:700;line-height:.78;
   font-size:clamp(3.2rem,7.2vw,5.8rem);letter-spacing:-.04em;
-  color:#170305;-webkit-text-stroke:1.4px rgba(240,65,59,.62);
-  font-variant-numeric:tabular-nums}
+  color:#8A151B;font-variant-numeric:tabular-nums}
 .death-title{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em;
   font-size:clamp(1.32rem,2.5vw,1.75rem);color:#fff;margin-bottom:12px}
 .death-text{color:#CBBCBD;font-size:1.03rem;line-height:1.66;max-width:62ch}
 .death .bleed{color:#F0413B;font-weight:600}
 
 .death-quote{position:relative;margin-top:clamp(42px,6vw,74px);max-width:920px;
-  padding:clamp(22px,3.4vw,38px) 0 clamp(22px,3.4vw,38px) clamp(26px,3vw,42px);
-  border-left:3px solid #E5484D;
-  background:linear-gradient(90deg,rgba(229,72,77,.12),rgba(229,72,77,0) 58%)}
+  padding:clamp(6px,1vw,10px) 0 clamp(6px,1vw,10px) clamp(26px,3vw,42px);
+  border-left:4px solid #E5484D}
 .death-quote p{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;
   font-size:clamp(1.28rem,2.6vw,1.92rem);line-height:1.34;color:#ECE4E4}
 .death-quote b{color:#fff;font-weight:600}
@@ -492,42 +491,42 @@ img,video{display:block;max-width:100%}
       <p class="sec-lead rv rv-d2">Sem custo de anúncio comendo a margem, o que entra fica. Tudo <b>100 por cento orgânico</b>, sem investir um real em tráfego pago.</p>
     </div>
 
-    <div class="proof-panel rv">
-      <div>
+  </div>
+
+  <div class="proof-stage rv">
+    <svg class="proof-chart" viewBox="0 0 560 220" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="fillGold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#C99A3E" stop-opacity=".26"/>
+          <stop offset="1" stop-color="#C99A3E" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="pw-area" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18 L560,220 L0,220 Z" fill="url(#fillGold)"/>
+      <path class="pw-line" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18" fill="none" stroke="#A9791F" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+    </svg>
+    <div class="proof-overlay">
+      <div class="wrap">
         <div class="proof-tag">Lucro dos últimos 30 dias</div>
         <div class="proof-big" data-count="60000" data-prefix="R$ ">R$ 60.000</div>
         <p class="proof-note">Margem de 95 por cento. O que entra, fica.</p>
       </div>
-      <div class="chartwrap">
-        <svg class="chart" viewBox="0 0 560 220" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="fillGold" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#C99A3E" stop-opacity=".3"/>
-              <stop offset="1" stop-color="#C99A3E" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <line x1="0" y1="185" x2="560" y2="185" stroke="rgba(10,23,27,.10)" stroke-width="1"/>
-          <line x1="0" y1="120" x2="560" y2="120" stroke="rgba(10,23,27,.07)" stroke-width="1"/>
-          <line x1="0" y1="55" x2="560" y2="55" stroke="rgba(10,23,27,.07)" stroke-width="1"/>
-          <path class="pw-area" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18 L560,220 L0,220 Z" fill="url(#fillGold)"/>
-          <path class="pw-line" d="M0,178 C70,168 120,164 175,132 C235,98 300,120 355,78 C415,44 480,52 560,18" fill="none" stroke="#A9791F" stroke-width="3.4" stroke-linecap="round"/>
-          <circle class="pw-dot" cx="175" cy="132" r="3.5"/><circle class="pw-dot" cx="355" cy="78" r="3.5"/><circle class="pw-dot" cx="560" cy="18" r="4.5"/>
-        </svg>
-      </div>
     </div>
+  </div>
 
-    <div class="shots">
-      <div class="shot rv">
-        <div class="shot-lbl">Mês passado, junho</div>
+  <div class="wrap">
+    <div class="evidence">
+      <div class="evi rv">
+        <div class="evi-lbl">Mês passado, junho</div>
         <img src="img/print_mes.jpg" alt="Painel de comissões mostrando o fechamento de junho" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="9420" data-prefix="US$ ">US$ 9.420</div>
-        <p class="shot-sub">Cerca de R$ 50 mil, com margem de 95 por cento.</p>
+        <div class="evi-val" data-count="9420" data-prefix="US$ ">US$ 9.420</div>
+        <p class="evi-sub">Cerca de R$ 50 mil, com margem de 95 por cento.</p>
       </div>
-      <div class="shot rv rv-d1">
-        <div class="shot-lbl">Resultado dos últimos 30 dias | Junho 2026</div>
+      <span class="evi-sep" aria-hidden="true"></span>
+      <div class="evi rv rv-d1">
+        <div class="evi-lbl">Resultado dos últimos 30 dias | Junho 2026</div>
         <img src="img/printUTMFY.jpg" alt="Painel da UTMify mostrando lucro de R$ 61 mil nos últimos 30 dias" loading="lazy" decoding="async">
-        <div class="shot-val" data-count="61165" data-prefix="R$ ">R$ 61.165</div>
-        <p class="shot-sub">100% de lucro.</p>
+        <div class="evi-val" data-count="61165" data-prefix="R$ ">R$ 61.165</div>
+        <p class="evi-sub">100% de lucro.</p>
       </div>
     </div>
   </div>
@@ -668,22 +667,18 @@ img,video{display:block;max-width:100%}
       <h2 class="sec-title rv rv-d1">Isso é muito maior<br>que <span class="accent">nutra</span></h2>
     </div>
 
-    <div class="ice rv">
-      <div class="ice-tip">
-        <div class="ice-lbl">O que todo mundo vê</div>
-        <div class="ice-item ice-top">Vender nutra VSL no orgânico</div>
-      </div>
-      <div class="waterline"><span>Nível da água</span></div>
-      <div class="ice-deep">
-        <div class="ice-lbl">O que o método de criação de vídeo realmente destrava</div>
-        <div class="deep-grid">
-          <div class="ice-item">Infoproduto com IA</div>
-          <div class="ice-item">Nutra Amazon DTC</div>
-          <div class="ice-item">E-commerce no orgânico</div>
-          <div class="ice-item">Recorrência</div>
-          <div class="ice-item">Qualquer oferta que precise de atenção</div>
-        </div>
-      </div>
+    <div class="berg rv">
+      <div class="berg-lbl">O que todo mundo vê</div>
+      <p class="berg-tip">Vender nutra VSL no orgânico</p>
+      <div class="berg-water" aria-hidden="true"><span>Nível da água</span></div>
+      <div class="berg-lbl berg-lbl-deep">O que o método de criação de vídeo realmente destrava</div>
+      <ul class="berg-deep">
+        <li>Infoproduto com IA</li>
+        <li>Nutra Amazon DTC</li>
+        <li>E-commerce no orgânico</li>
+        <li>Recorrência</li>
+        <li>Qualquer oferta que precise de atenção</li>
+      </ul>
     </div>
 
     <p class="sec-lead rv" style="margin:50px auto 0;text-align:center;max-width:680px"><b>Você não está aprendendo a vender nutra.</b> Está dominando a habilidade de transformar atenção orgânica em venda, e ela abre <span class="accent">todos esses mercados</span>.</p>
@@ -952,7 +947,6 @@ img,video{display:block;max-width:100%}
   }, { threshold:.2, rootMargin:"0px 0px -8% 0px" });
 
   document.querySelectorAll(".rv").forEach(function(el){ io.observe(el); });
-  document.querySelectorAll(".proof-panel").forEach(function(el){ io.observe(el); });
   document.querySelectorAll(".ledger-box").forEach(function(el){ io.observe(el); });
 })();
 </script>
