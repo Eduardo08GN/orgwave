@@ -41,8 +41,8 @@
   measureScroll();
   paintScroll();
 
-  /* ---- checkout placeholder (trocar pela URL real da Kiwify) ---- */
-  var CHECKOUT_URL = ""; // ex: "https://pay.kiwify.com.br/xxxxx"
+  /* ---- checkout da Kiwify ---- */
+  var CHECKOUT_URL = "https://pay.kiwify.com.br/TJgtQmK";
   document.querySelectorAll("[data-checkout]").forEach(function (el) {
     el.addEventListener("click", function (e) {
       if (CHECKOUT_URL) {
