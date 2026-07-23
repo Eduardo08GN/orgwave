@@ -41,17 +41,21 @@
   measureScroll();
   paintScroll();
 
-  /* ---- checkout da Kiwify ---- */
+  /* ---- checkout da Kiwify ----
+     O href real ja vem no HTML (funciona sem JS). Aqui so reforcamos a URL, pra
+     um unico ponto de troca continuar valendo, e mantemos o fallback de rolar
+     ate a oferta caso a URL seja esvaziada. Nao sequestramos o clique: senao a
+     barra de status, o ctrl+clique e o "copiar link" apontam pro href errado. */
   var CHECKOUT_URL = "https://pay.kiwify.com.br/TJgtQmK";
   document.querySelectorAll("[data-checkout]").forEach(function (el) {
+    if (CHECKOUT_URL) {
+      el.href = CHECKOUT_URL;
+      return;
+    }
     el.addEventListener("click", function (e) {
-      if (CHECKOUT_URL) {
-        window.location.href = CHECKOUT_URL;
-      } else {
-        e.preventDefault();
-        var oferta = document.getElementById("oferta");
-        if (oferta) oferta.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
-      }
+      e.preventDefault();
+      var oferta = document.getElementById("oferta");
+      if (oferta) oferta.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
     });
   });
 
